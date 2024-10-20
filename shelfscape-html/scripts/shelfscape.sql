@@ -8,3 +8,5 @@ CREATE TABLE IF NOT EXISTS
     `email` VARCHAR(50) NOT NULL,
     `phone` VARCHAR(50) NOT NULL
 );
+
+-- todo, insert all book data into sql directly
