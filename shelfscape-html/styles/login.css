@@ -41,10 +41,6 @@
     width: 100%; /* Ensure the container takes full width */
 }
 
-#username {
-    margin-bottom: 5vh;
-}
-
 u>a {
     text-decoration: none;
     color: inherit;
