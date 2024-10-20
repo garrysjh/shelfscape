@@ -2,11 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh; /* Adjusted height */
+    height: 70vh; /* Adjusted height */
     flex-direction: column; /* Ensure form elements are stacked vertically */
 }
 
-.login-button {
+.register-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,11 +22,11 @@
     -webkit-appearance: none; /* Remove default styling for Safari */
 }
 
-.login-button:hover {
+.register-button:hover {
     background-color: darkviolet; /* Slightly darker purple on hover */
 }
 
-#username, input[type="password"] {
+#username, #phone, #email, input[type="password"] {
     width: 80vw; /* Extend to 80% of the screen width */
     padding: 10px; /* Padding for better appearance */
     margin: 10px 0; /* Margin for spacing between fields */
@@ -41,9 +41,6 @@
     width: 100%; /* Ensure the container takes full width */
 }
 
-#username {
-    margin-bottom: 5vh;
-}
 
 u>a {
     text-decoration: none;
