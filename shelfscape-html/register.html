@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/register.css"/>
   </head>
   <body>
     <header>
@@ -46,6 +47,48 @@
         </div>
       </nav>
     </header>
+    <div class="main-content">
+        <form action="register.php" method="post">
+          <div>
+            <label for="username">Username:</label>
+          </div>
+          <div>
+            <input type="text" id="username" name="username" required placeholder="Input your username">
+          </div>
+          <div>
+            <label for="email">Email:</label>
+          </div>
+          <div>
+            <input type="text" id="email" name="email" required placeholder="Input your email">
+          </div>
+          <div>
+            <label for="phone">Mobile Phone:</label>
+          </div>
+          <div>
+            <input type="tel" id="phone" name="phone" required placeholder="Input your phone number">
+          </div>
+          <div>
+            <label for="password">Password:</label>
+          </div>
+          <div>
+            <input type="password" id="password" name="password" required placeholder="Input your password">
+          </div>
+          <div>
+            <label for="confirmPassword">Confirm Password:</label>
+          </div>
+          <div>
+            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+          </div>
+          <div class="button-container">
+            <button type="submit" class="register-button">Register</button>
+          </div>
+        </form>
+        <u>
+            <a href="login.html">
+            Already have an account? Log In here
+        </a>
+        </u>
+      </div>
   </body>
   <script></script>
 </html>

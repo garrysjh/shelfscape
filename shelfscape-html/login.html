@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/login.css"/>
   </head>
   <body>
     <header>
@@ -46,6 +47,35 @@
         </div>
       </nav>
     </header>
+    <div class="main-content">
+        <form action="login.php" method="post">
+          <div>
+            <label for="username">Username:</label>
+          </div>
+          <div>
+            <input type="text" id="username" name="username" required placeholder="Input your username">
+          </div>
+          <div>
+            <label for="password">Password:</label>
+          </div>
+          <div>
+            <input type="password" id="password" name="password" required placeholder="Input your password">
+          </div>
+          <div class="button-container">
+            <button type="submit" class="login-button">Log in</button>
+          </div>
+        </form>
+        <u>
+            <a href="#">
+            Forgot password? Click here to reset
+        </a>
+        </u>
+        <u>
+            <a href="register.html">
+            Don't have an account? Click here to create!
+        </a>
+        </u>
+      </div>
   </body>
   <script></script>
 </html>

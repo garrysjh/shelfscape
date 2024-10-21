@@ -311,6 +311,13 @@ body{
 	float: left;
 	margin-top: 18px;
 }
+
+.logo > a > img {
+	height: 40px;
+	width: auto;
+}
+
+
 .header .navbar {
 	background: none;
 	box-shadow: none;

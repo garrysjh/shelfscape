@@ -1,16 +1,19 @@
 body {
+    margin: 0;
     font-family: Inter;
 }
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 30px 20px;
     background-color: #F8F8ED;
     color: black;
 }
 .logo img {
-    width: 30px;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    width: 40px;
     height: auto; 
 }
 .navbar .logo {
@@ -73,4 +76,10 @@ body {
 .navbar .account-icon {
     font-size: 24px;
     cursor: pointer;
+}
+.account-icon > a > img {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    width: 40px;
+    height: auto; 
 }

@@ -1,0 +1,51 @@
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; /* Adjusted height */
+    flex-direction: column; /* Ensure form elements are stacked vertically */
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    padding: 15px 75px; /* Padding for better button size */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default styling for Safari */
+}
+
+.login-button:hover {
+    background-color: darkviolet; /* Slightly darker purple on hover */
+}
+
+#username, input[type="password"] {
+    width: 80vw; /* Extend to 80% of the screen width */
+    padding: 10px; /* Padding for better appearance */
+    margin: 10px 0; /* Margin for spacing between fields */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+u>a {
+    text-decoration: none;
+    color: inherit;
+}
+
+u {
+    margin: 5px;
+}
