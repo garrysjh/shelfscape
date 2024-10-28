@@ -21,15 +21,22 @@ h1 {
   border-radius: 10%;
   border-color: #E6E6E6;
 }
-
 .book > a {
   text-decoration: none;
+  transition: ease 0.3s;
+}
+
+.book > a:hover {
+  text-decoration: underline;
+  filter: brightness(0.7);
 }
 
 .book img {
   max-width: 200px;
   height: auto;
 }
+
+
 
 .title {
   text-align: left;
