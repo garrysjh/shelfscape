@@ -142,5 +142,40 @@ $conn->close();
         <?php endif; ?>
         </div>
     </section>
+    <section class="write-review-section">
+          <div class="write-review-div">
+            <h2>Leave a Review</h2>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+              <form action="submit_review.php" method="POST">
+                <input type="hidden" name="bookId" value="<?php echo $bookId; ?>">
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['user_id']; ?>">
+                <div class="form-group">
+                  <label for="rating">Rating (1-5):</label>
+                  <select name="rating" id="rating" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="recommended">Recommended:</label>
+                  <select name="recommended" id="recommended" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="review">Review:</label>
+                  <textarea name="review" id="review" rows="4" required></textarea>
+                </div>
+                <button type="submit">Submit Review</button>
+              </form>
+          <?php else: ?>
+            <p>Please <a href="login.php">log in</a> to leave a review.</p>
+          <?php endif; ?>
+        </div>
+        </section>
 </body>
 </html>
