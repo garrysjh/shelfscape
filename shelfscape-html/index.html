@@ -31,13 +31,14 @@
           </div>
           <a href="#">About</a>
           <a href="#">Services</a>
-
           <a href="#">Contact</a>
         </div>
         <div class="search-bar">
-          <input type="text" placeholder="ENTER SERIAL NO OR TITLE" />
-          <button class="search-button">Search</button>
-          <i class="fas fa-search"></i>
+          <form action="books.php" method="GET">
+            <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
+            <button type="submit" class="search-button">Search</button>
+            <i class="fas fa-search"></i>
+          </form>
         </div>
         <div class="account-icon">
           <a href="login.html">

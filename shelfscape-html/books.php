@@ -14,19 +14,40 @@ if ($conn->connect_error) {
 }
 
 // Pagination settings
-$limit = 6; // Number of books per page
+$limit = 9; // Number of books per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Retrieve total number of books
-$sql = "SELECT COUNT(*) as total FROM Books";
-$result = $conn->query($sql);
-$totalBooks = $result->fetch_assoc()['total'];
-$totalPages = ceil($totalBooks / $limit);
+// Retrieve search query
+$query = isset($_GET['query']) ? $_GET['query'] : '';
 
-// Retrieve books for the current page
-$sql = "SELECT bookId, title, author, coverImg FROM Books LIMIT $limit OFFSET $offset";
-$result = $conn->query($sql);
+// Modify SQL query based on search query
+if ($query) {
+    $sql = "SELECT COUNT(*) as total FROM Books WHERE title LIKE ? OR isbn LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $searchTerm = '%' . $query . '%';
+    $stmt->bind_param("ss", $searchTerm, $searchTerm);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $totalBooks = $result->fetch_assoc()['total'];
+    $totalPages = ceil($totalBooks / $limit);
+
+    $sql = "SELECT bookId, title, author, coverImg FROM Books WHERE title LIKE ? OR isbn LIKE ? LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssii", $searchTerm, $searchTerm, $limit, $offset);
+} else {
+    $sql = "SELECT COUNT(*) as total FROM Books";
+    $result = $conn->query($sql);
+    $totalBooks = $result->fetch_assoc()['total'];
+    $totalPages = ceil($totalBooks / $limit);
+
+    $sql = "SELECT bookId, title, author, coverImg FROM Books LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $limit, $offset);
+}
+
+$stmt->execute();
+$result = $stmt->get_result();
 
 $books = [];
 if ($result->num_rows > 0) {
@@ -106,15 +127,15 @@ $conn->close();
         <!-- Pagination Links -->
         <div class="pagination">
             <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>">Previous</a>
+                <a href="?page=<?php echo $page - 1; ?>&query=<?php echo urlencode($query); ?>">Previous</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="?page=<?php echo $i; ?>" <?php if ($i == $page) echo 'class="active"'; ?>><?php echo $i; ?></a>
+                <a href="?page=<?php echo $i; ?>&query=<?php echo urlencode($query); ?>" <?php if ($i == $page) echo 'class="active"'; ?>><?php echo $i; ?></a>
             <?php endfor; ?>
 
             <?php if ($page < $totalPages): ?>
-                <a href="?page=<?php echo $page + 1; ?>">Next</a>
+                <a href="?page=<?php echo $page + 1; ?>&query=<?php echo urlencode($query); ?>">Next</a>
             <?php endif; ?>
         </div>
         </div>
