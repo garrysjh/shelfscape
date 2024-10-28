@@ -80,9 +80,22 @@ body {
     font-size: 24px;
     cursor: pointer;
 }
-.account-icon > a > img {
+
+.usericon {
     margin-left: 2vw;
     margin-right: 2vw;
+    width: 40px;
+    height: auto; 
+    transition: filter 0.3s ease; /* Add transition for smooth effect */
+}
+
+.usericon:hover {
+    filter: brightness(0.7); /* Darken the image on hover */
+}
+
+.otherusericon {
+    margin-left: 2vw;
+    margin-right: 1vw;
     width: 40px;
     height: auto; 
 }

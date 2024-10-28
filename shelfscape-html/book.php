@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database configuration
 $servername = "localhost";
 $username = "root";
@@ -25,6 +26,20 @@ $result = $stmt->get_result();
 
 $book = $result->fetch_assoc();
 
+// Retrieve 3 most recent reviews for the book
+$sql = "SELECT u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $bookId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$reviews = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $reviews[] = $row;
+    }
+}
+$stmt->close();
 $conn->close();
 ?>
 
@@ -47,7 +62,7 @@ $conn->close();
 <header>
 <nav class="navbar">
         <div class="logo">
-            <a href="index.html">
+            <a href="index.php">
           <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
         </a>
         </div>
@@ -56,14 +71,16 @@ $conn->close();
           <div class="dropdown">
             <a href="#">Categories</a>
             <div class="dropdown-content">
-              <a href="#">Fantasy</a>
-              <a href="#">Product 2</a>
-              <a href="#">Product 3</a>
+              <a href="books.php?category=Fantasy">Fantasy</a>
+              <a href="books.php?category=Fiction">Fiction</a>
+              <a href="books.php?category=Romance">Romance</a>
+              <a href="books.php?category=Classics">Classics</a>
+              <a href="books.php?category=Horror">Horror</a>
             </div>
           </div>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
+          <a href="events.html">Events</a>
+          <a href="aboutus.html">About</a>
+          <a href="donate.html">Donate</a>
         </div>
         <div class="search-bar">
           <form action="books.php" method="GET">
@@ -73,9 +90,20 @@ $conn->close();
           </form>
         </div>
         <div class="account-icon">
-          <a href="login.html">
-            <img src="assets/icons/user.png" alt="User Icon" />
-          </a>
+          <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+            <div class="dropdown">
+            <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+              <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="settings.php">Settings</a>
+                <a href="logout.php">Logout</a>
+              </div>
+            </div>
+          <?php else: ?>
+            <a href="login.php">
+              <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+            </a>
+          <?php endif; ?>
         </div>
       </nav>
     </header>
@@ -86,10 +114,68 @@ $conn->close();
         <h1><?php echo $book['title']; ?></h1>
         <p><strong>Author: </strong><?php echo $book['author'];?></p>
         <p><strong>ISBN: </strong><?php echo $book['isbn'];?></p>
-        <p><strong>Genres: </strong><?php echo join(', ', json_decode($book['genres'], true));?></p>
+        <p><strong>Genres: </strong><?php echo $book['genres'] ? join(', ', json_decode($book['genres'], true)) : 'No genre specified'; ?></p>
         <p><?php echo $book['description']; ?></p>
         </div>
 </div>
     </main>
+    <section class="review-section">
+      <div class="recent-reviews">
+        <h2>Recent Reviews</h2>
+        <?php if (!empty($reviews)): ?>
+            <?php foreach ($reviews as $review): ?>
+                <div class="review">
+                    <div class="review-title">
+                      <div class="review-profile">
+                      <img src="<?php echo $review['profilePicture']; ?>" alt="User Icon" class="otherusericon"/>
+                      <p><strong><?php echo htmlspecialchars($review['username']); ?></strong></p>
+            </div>
+                      <p class="review-date"><em><?php echo htmlspecialchars($review['date']); ?></em></p>
+                    </div>
+                    <p class="review-rating"><strong>Rating given: </strong><?php echo htmlspecialchars($review['rating']); ?>/5</p>
+                    <p class="review-content"><strong>Review: </strong></br></p>
+                    <p class="review-content"><?php echo htmlspecialchars($review['review']); ?></p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="review-content" >No reviews found.</p>
+        <?php endif; ?>
+        </div>
+    </section>
+    <section class="write-review-section">
+          <div class="write-review-div">
+            <h2>Leave a Review</h2>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+              <form action="submit_review.php" method="POST">
+                <input type="hidden" name="bookId" value="<?php echo $bookId; ?>">
+                <input type="hidden" name="userId" value="<?php echo $_SESSION['user_id']; ?>">
+                <div class="form-group">
+                  <label for="rating">Rating (1-5):</label>
+                  <select name="rating" id="rating" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="recommended">Recommended:</label>
+                  <select name="recommended" id="recommended" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="review">Review:</label>
+                  <textarea name="review" id="review" rows="4" placeholder="Leave your review below!" required></textarea>
+                </div>
+                <button type="submit">Submit Review</button>
+              </form>
+          <?php else: ?>
+            <p>Please <a href="login.php">log in</a> to leave a review.</p>
+          <?php endif; ?>
+        </div>
+        </section>
 </body>
 </html>

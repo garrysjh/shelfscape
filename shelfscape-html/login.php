@@ -39,28 +39,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Store user details in session
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
+            $_SESSION['loggedin'] = true;
+
+            // Fetch profile picture
+            $profile_stmt = $conn->prepare("SELECT profilePicture FROM user WHERE id = ?");
+            $profile_stmt->bind_param("i", $id);
+            $profile_stmt->execute();
+            $profile_stmt->bind_result($profilePicture);
+            $profile_stmt->fetch();
+            $_SESSION['profilePicture'] = $profilePicture;
+            $profile_stmt->close();
+            $_SESSION['username'] = $username;
+            $_SESSION['loggedin'] = true;
+            
+
+            // Update lastLogin field
+            $update_stmt = $conn->prepare("UPDATE user SET lastLogin = NOW() WHERE id = ?");
+            $update_stmt->bind_param("i", $id);
+            $update_stmt->execute();
 
             // Redirect to dashboard or home page
-            header("Location: dashboard.php");
+            echo "<script>
+                    alert('Login successful!');
+                    window.location.href = 'index.php';
+                  </script>";
             exit();
         } else {
             // Invalid password
             echo "<script>
-                    alert('Invalid username or password!');
-                    window.location.href = 'login.php';
+                    alert('Invalid password!');
                   </script>";
         }
     } else {
         // User does not exist
         echo "<script>
-                alert('Invalid username or password!');
-                window.location.href = 'login.php';
+                alert('User does not exist!');
               </script>";
     }
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
 }
 ?>
 <!DOCTYPE html>
@@ -79,35 +94,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </head>
   <body>
     <header>
-      <nav class="navbar">
+    <nav class="navbar">
         <div class="logo">
-            <a href="index.html">
+            <a href="index.php">
           <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
         </a>
         </div>
         <div class="nav-links">
-          <a href="#">Books</a>
+          <a href="books.php">Books</a>
           <div class="dropdown">
             <a href="#">Categories</a>
             <div class="dropdown-content">
-              <a href="#">Fantasy</a>
-              <a href="#">Product 2</a>
-              <a href="#">Product 3</a>
+              <a href="books.php?category=Fantasy">Fantasy</a>
+              <a href="books.php?category=Fiction">Fiction</a>
+              <a href="books.php?category=Romance">Romance</a>
+              <a href="books.php?category=Classics">Classics</a>
+              <a href="books.php?category=Horror">Horror</a>
             </div>
           </div>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
+          <a href="events.html">Events</a>
+          <a href="aboutus.html">About</a>
+          <a href="donate.html">Donate</a>
         </div>
         <div class="search-bar">
-          <input type="text" placeholder="ENTER SERIAL NO OR TITLE" />
-          <button class="search-button">Search</button>
-          <i class="fas fa-search"></i>
+          <form action="books.php" method="GET">
+            <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
+            <button type="submit" class="search-button">Search</button>
+            <i class="fas fa-search"></i>
+          </form>
         </div>
         <div class="account-icon">
-          <a href="login.html">
-            <img src="assets/icons/user.png" alt="User Icon" />
-          </a>
+          <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+            <div class="dropdown">
+            <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+              <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="settings.php">Settings</a>
+                <a href="logout.php">Logout</a>
+              </div>
+            </div>
+          <?php else: ?>
+            <a href="login.php">
+              <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+            </a>
+          <?php endif; ?>
         </div>
       </nav>
     </header>

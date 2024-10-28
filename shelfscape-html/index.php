@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +18,7 @@
     <header>
       <nav class="navbar">
         <div class="logo">
-            <a href="index.html">
+            <a href="index.php">
           <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
         </a>
         </div>
@@ -33,7 +36,7 @@
           </div>
           <a href="events.html">Events</a>
           <a href="aboutus.html">About</a>
-          <a href="donate.html">Donate</a>
+          <a href="donate.php">Donate</a>
         </div>
         <div class="search-bar">
           <form action="books.php" method="GET">
@@ -43,9 +46,20 @@
           </form>
         </div>
         <div class="account-icon">
-          <a href="login.php">
-            <img src="assets/icons/user.png" alt="User Icon" />
-          </a>
+          <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+            <div class="dropdown">
+            <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="User Icon" class="usericon"/>
+              <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="settings.php">Settings</a>
+                <a href="logout.php">Logout</a>
+              </div>
+            </div>
+          <?php else: ?>
+            <a href="login.php">
+              <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+            </a>
+          <?php endif; ?>
         </div>
       </nav>
     </header>

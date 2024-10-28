@@ -1,5 +1,6 @@
-CREATE DATABASE IF NOT EXISTS shelfscape; USE
-    shelfscape;
+CREATE DATABASE IF NOT EXISTS shelfscape; 
+USE shelfscape;
+-- User
 DROP TABLE IF EXISTS
     `User`;
 CREATE TABLE IF NOT EXISTS `User`(
@@ -7,13 +8,56 @@ CREATE TABLE IF NOT EXISTS `User`(
     `username` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(50) NOT NULL UNIQUE,
-    `phone` VARCHAR(50) NOT NULL UNIQUE
+    `phone` VARCHAR(50) NOT NULL UNIQUE,
+    `timeCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `lastLogin` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `profilePicture` VARCHAR(255) DEFAULT "assets/icons/user.png"
 );
--- todo, insert all book data into sql directly
+INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+    'admin',
+    'admin',
+    'admin@admin.com',
+    '999');
+
+INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+'johndoe',
+'password123',
+'johndoe@example.com',
+'1234567890');
+
+-- Reviews
+DROP TABLE IF EXISTS
+    `Reviews`;
+CREATE TABLE IF NOT EXISTS `Reviews`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL, -- foreign key for id from users
+    `bookId` VARCHAR(135) NOT NULL, -- foreign key for bookId
+    `rating` INT NOT NULL,
+    `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `review` TEXT,
+    `recommended` BOOLEAN);
+
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VALUES(
+    1,
+    '10210.Jane_Eyres',
+    5,
+    'This book is amazing. It is a work of art. I read this and related very heavily to the main character. This was a beautiful experience. Would highly recommend this work of art to anyone seeking a very passionate read! ',
+    true
+);
+
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VALUES(
+    2,
+    '10210.Jane_Eyres',
+    5,
+    'This book is amazing. It is a work of art. I read this and related very heavily to the main character. This was a beautiful experience. Would highly recommend this work of art to anyone seeking a very passionate read! ',
+    true
+);
+
+-- Following below are scripts for inserting books
 DROP TABLE IF EXISTS
     `Books`;
 CREATE TABLE IF NOT EXISTS `Books`(
-    bookId VARCHAR(135) NOT NULL PRIMARY KEY,
+    bookId VARCHAR(135) NOT NULL PRIMARY KEY DEFAULT title,
     title VARCHAR(251) NOT NULL,
     series VARCHAR(93),
     author VARCHAR(381) NOT NULL,
