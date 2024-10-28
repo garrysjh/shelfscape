@@ -45,7 +45,7 @@ $conn->close();
 </head>
 <body>
 <header>
-      <nav class="navbar">
+<nav class="navbar">
         <div class="logo">
             <a href="index.html">
           <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
@@ -63,20 +63,20 @@ $conn->close();
           </div>
           <a href="#">About</a>
           <a href="#">Services</a>
-
           <a href="#">Contact</a>
         </div>
         <div class="search-bar">
-          <input type="text" placeholder="ENTER SERIAL NO OR TITLE" />
-          <button class="search-button">Search</button>
-          <i class="fas fa-search"></i>
+          <form action="books.php" method="GET">
+            <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
+            <button type="submit" class="search-button">Search</button>
+            <i class="fas fa-search"></i>
+          </form>
         </div>
         <div class="account-icon">
           <a href="login.html">
             <img src="assets/icons/user.png" alt="User Icon" />
           </a>
         </div>
-        
       </nav>
     </header>
     <main>
