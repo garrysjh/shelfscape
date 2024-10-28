@@ -77,7 +77,8 @@ body {
     font-size: 24px;
     cursor: pointer;
 }
-.account-icon > a > img {
+
+.usericon {
     margin-left: 2vw;
     margin-right: 2vw;
     width: 40px;
