@@ -13,20 +13,30 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve all books
-$sql = "SELECT bookId, title, author, coverImg FROM Books";
+// Pagination settings
+$limit = 6; // Number of books per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Retrieve total number of books
+$sql = "SELECT COUNT(*) as total FROM Books";
+$result = $conn->query($sql);
+$totalBooks = $result->fetch_assoc()['total'];
+$totalPages = ceil($totalBooks / $limit);
+
+// Retrieve books for the current page
+$sql = "SELECT bookId, title, author, coverImg FROM Books LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
 
-$bookNames = [];
+$books = [];
 if ($result->num_rows > 0) {
-    // Fetch all book names
+    // Fetch all books
     while($row = $result->fetch_assoc()) {
-      $books[] = $row;
+        $books[] = $row;
     }
 } else {
     echo "No books found.";
 }
-
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -52,7 +62,7 @@ $conn->close();
         </a>
         </div>
         <div class="nav-links">
-          <a href="#">Books</a>
+          <a href="books.php">Books</a>
           <div class="dropdown">
             <a href="#">Categories</a>
             <div class="dropdown-content">
@@ -92,6 +102,20 @@ $conn->close();
                     </a>
                 </div>
             <?php endforeach; ?>
+        </div>
+        <!-- Pagination Links -->
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?php echo $page - 1; ?>">Previous</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="?page=<?php echo $i; ?>" <?php if ($i == $page) echo 'class="active"'; ?>><?php echo $i; ?></a>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages): ?>
+                <a href="?page=<?php echo $page + 1; ?>">Next</a>
+            <?php endif; ?>
         </div>
         </div>
     </main>
