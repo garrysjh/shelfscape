@@ -25,6 +25,15 @@ INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
 'johndoe@example.com',
 '1234567890');
 
+-- CartItems
+-- For reserving existing books
+DROP TABLE IF EXISTS `CartItems`;
+CREATE TABLE IF NOT EXISTS `CartItems`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL, -- foreign key for id from users
+    `bookId` VARCHAR(135) NOT NULL -- foreign key for bookId
+);
+
 -- Reviews
 DROP TABLE IF EXISTS
     `Reviews`;
@@ -49,7 +58,7 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VAL
     2,
     '10210.Jane_Eyres',
     5,
-    'This book is amazing. It is a work of art. I read this and related very heavily to the main character. This was a beautiful experience. Would highly recommend this work of art to anyone seeking a very passionate read! ',
+    'This book is a work of art. I really enjoyed the character Jane. Even though some of the charactersin this book got pretty annoying, I still thought this was a pretty beautiful experience. Would highly recommend this work of art to anyone seeking a very kind read! ',
     true
 );
 
@@ -81,7 +90,8 @@ CREATE TABLE IF NOT EXISTS `Books`(
     coverImg VARCHAR(108),
     bbeScore INTEGER,
     bbeVotes INTEGER,
-    price VARCHAR(8)
+    price VARCHAR(8),
+    quantity INTEGER DEFAULT 1
 ); INSERT INTO Books(
     bookId,
     title,

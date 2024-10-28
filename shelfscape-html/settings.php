@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
     <div class="settings-div">
         <h1>Change your profile information</h1>
-        <form action="settings_process.php" method="POST" enctype="multipart/form-data">
+        <form action="settings.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
