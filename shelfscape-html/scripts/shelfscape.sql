@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Books`(
     publisher VARCHAR(105),
     publishDate VARCHAR(204),
     firstPublishDate VARCHAR(19),
-    awards JSON,
+    awards VARCHAR(255),
     numRatings INTEGER,
     ratingsByStars VARCHAR(53),
     likedPercent INTEGER,

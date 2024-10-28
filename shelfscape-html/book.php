@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 $bookId = $_GET['id'];
 
 // Retrieve book details
-$sql = "SELECT title, coverImg, description FROM Books WHERE bookId = ?";
+$sql = "SELECT title, author, coverImg, isbn, description, genres FROM Books WHERE bookId = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $bookId);
 $stmt->execute();
@@ -33,6 +33,12 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <title><?php echo $book['title']; ?></title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/book.css">
@@ -46,7 +52,7 @@ $conn->close();
         </a>
         </div>
         <div class="nav-links">
-          <a href="#">Books</a>
+          <a href="books.php">Books</a>
           <div class="dropdown">
             <a href="#">Categories</a>
             <div class="dropdown-content">
@@ -74,10 +80,16 @@ $conn->close();
       </nav>
     </header>
     <main>
-
-        <h1><?php echo $book['title']; ?></h1>
+    <div class="book-intro">
         <img src="<?php echo $book['coverImg']; ?>" alt="<?php echo $book['title']; ?> Cover Image">
+        <div class="book-description">
+        <h1><?php echo $book['title']; ?></h1>
+        <p><strong>Author: </strong><?php echo $book['author'];?></p>
+        <p><strong>ISBN: </strong><?php echo $book['isbn'];?></p>
+        <p><strong>Genres: </strong><?php echo join(',', array($book['genres']));?></p>
         <p><?php echo $book['description']; ?></p>
+        </div>
+</div>
     </main>
 </body>
 </html>

@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Retrieve all books
-$sql = "SELECT bookId, title, coverImg FROM Books";
+$sql = "SELECT bookId, title, author, coverImg FROM Books";
 $result = $conn->query($sql);
 
 $bookNames = [];
@@ -80,16 +80,19 @@ $conn->close();
       </nav>
     </header>
     <main>
-        <h1>Books</h1>
+      <div class="main-container">
+        <h1>All Books</h1>
         <div class="books-container">
             <?php foreach ($books as $book): ?>
               <div class="book">
                     <a href="book.php?id=<?php echo $book['bookId']; ?>">
                         <img src="<?php echo $book['coverImg']; ?>" alt="<?php echo $book['title']; ?> Cover Image">
-                        <p><?php echo $book['title']; ?></p>
+                        <p class="title"><?php echo $book['title']; ?></p>
+                        <p class="author"><?php echo $book['author']; ?></p>
                     </a>
                 </div>
             <?php endforeach; ?>
+        </div>
         </div>
     </main>
   </body>
