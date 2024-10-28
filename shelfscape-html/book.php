@@ -26,6 +26,20 @@ $result = $stmt->get_result();
 
 $book = $result->fetch_assoc();
 
+// Retrieve 3 most recent reviews for the book
+$sql = "SELECT u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $bookId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$reviews = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $reviews[] = $row;
+    }
+}
+$stmt->close();
 $conn->close();
 ?>
 
@@ -105,5 +119,19 @@ $conn->close();
         </div>
 </div>
     </main>
+    <section>
+        <h2>Recent Reviews</h2>
+        <?php if (!empty($reviews)): ?>
+            <?php foreach ($reviews as $review): ?>
+                <div class="review">
+                    <p><strong><?php echo htmlspecialchars($review['username']); ?>:</strong></p>
+                    <p><?php echo htmlspecialchars($review['review']); ?></p>
+                    <p><em><?php echo htmlspecialchars($review['date']); ?></em></p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No reviews found.</p>
+        <?php endif; ?>
+    </section>
 </body>
 </html>
