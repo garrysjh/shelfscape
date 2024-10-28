@@ -48,7 +48,7 @@ session_start();
         <div class="account-icon">
           <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
             <div class="dropdown">
-            <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+            <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="User Icon" class="usericon"/>
               <div class="dropdown-content">
                 <a href="profile.php">Profile</a>
                 <a href="settings.php">Settings</a>

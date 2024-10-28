@@ -41,27 +41,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $username;
             $_SESSION['loggedin'] = true;
 
+            // Fetch profile picture
+            $profile_stmt = $conn->prepare("SELECT profilePicture FROM user WHERE id = ?");
+            $profile_stmt->bind_param("i", $id);
+            $profile_stmt->execute();
+            $profile_stmt->bind_result($profilePicture);
+            $profile_stmt->fetch();
+            $_SESSION['profilePicture'] = $profilePicture;
+            $profile_stmt->close();
+            $_SESSION['username'] = $username;
+            $_SESSION['loggedin'] = true;
+            
+
+            // Update lastLogin field
+            $update_stmt = $conn->prepare("UPDATE user SET lastLogin = NOW() WHERE id = ?");
+            $update_stmt->bind_param("i", $id);
+            $update_stmt->execute();
+
             // Redirect to dashboard or home page
-            header("Location: index.php");
+            echo "<script>
+                    alert('Login successful!');
+                    window.location.href = 'index.php';
+                  </script>";
             exit();
         } else {
             // Invalid password
             echo "<script>
-                    alert('Invalid username or password!');
-                    window.location.href = 'login.php';
+                    alert('Invalid password!');
                   </script>";
         }
     } else {
         // User does not exist
         echo "<script>
-                alert('Invalid username or password!');
-                window.location.href = 'login.php';
+                alert('User does not exist!');
               </script>";
     }
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
 }
 ?>
 <!DOCTYPE html>

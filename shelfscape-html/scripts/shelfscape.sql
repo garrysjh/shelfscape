@@ -7,7 +7,10 @@ CREATE TABLE IF NOT EXISTS `User`(
     `username` VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
     `email` VARCHAR(50) NOT NULL UNIQUE,
-    `phone` VARCHAR(50) NOT NULL UNIQUE
+    `phone` VARCHAR(50) NOT NULL UNIQUE,
+    `timeCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `lastLogin` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `profilePicture` VARCHAR(255) DEFAULT "assets/icons/user.png"
 );
 -- todo, insert all book data into sql directly
 DROP TABLE IF EXISTS

@@ -15,7 +15,7 @@ session_start();
   </head>
   <body>
     <header>
-	<nav class="navbar">
+      <nav class="navbar">
         <div class="logo">
             <a href="index.php">
           <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
