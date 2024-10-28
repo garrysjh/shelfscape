@@ -86,7 +86,7 @@ $conn->close();
         <h1><?php echo $book['title']; ?></h1>
         <p><strong>Author: </strong><?php echo $book['author'];?></p>
         <p><strong>ISBN: </strong><?php echo $book['isbn'];?></p>
-        <p><strong>Genres: </strong><?php echo join(',', array($book['genres']));?></p>
+        <p><strong>Genres: </strong><?php echo join(', ', json_decode($book['genres'], true));?></p>
         <p><?php echo $book['description']; ?></p>
         </div>
 </div>

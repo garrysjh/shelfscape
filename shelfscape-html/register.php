@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Show alert and redirect to login page upon successful registration
             echo "<script>
                     alert('Registration successful!');
-                    window.location.href = 'login.html';
+                    window.location.href = 'login.php';
                   </script>";
             exit();
         }
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($e->getCode() == 1062) {
             echo "<script>
                     alert('Your account credentials already exist, use another username/email/phone!');
-                    window.location.href = 'register.html';
+                    window.location.href = 'register.php';
                   </script>";
         } else {
             echo "Error: " . $e->getMessage();

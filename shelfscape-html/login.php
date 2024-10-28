@@ -47,14 +47,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Invalid password
             echo "<script>
                     alert('Invalid username or password!');
-                    window.location.href = 'login.html';
+                    window.location.href = 'login.php';
                   </script>";
         }
     } else {
         // User does not exist
         echo "<script>
                 alert('Invalid username or password!');
-                window.location.href = 'login.html';
+                window.location.href = 'login.php';
               </script>";
     }
 
