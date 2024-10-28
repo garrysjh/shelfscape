@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 
 // Retrieve current user data
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM user WHERE id = ?";
+$sql = "SELECT username, email, phone, profilePicture, timeCreated, lastLogin FROM user WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -108,7 +108,9 @@ $conn->close();
         <p><strong>Email:</strong> <?php echo htmlspecialchars($userData['email']); ?></p>
         <p><strong>Phone:</strong> <?php echo htmlspecialchars($userData['phone']); ?></p>
         <p><strong>Profile Picture:</strong></p>
-        <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100">
+        <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100"><br>
+        <p><strong>Account Created:</strong> <?php echo htmlspecialchars($userData['timeCreated']); ?></p>
+        <p><strong>Last Login:</strong> <?php echo htmlspecialchars($userData['lastLogin']); ?></p>
     <?php else: ?>
         <p>User data not found.</p>
     <?php endif; ?>

@@ -83,4 +83,9 @@ body {
     margin-right: 2vw;
     width: 40px;
     height: auto; 
+    transition: filter 0.3s ease; /* Add transition for smooth effect */
+}
+
+.usericon:hover {
+    filter: brightness(0.7); /* Darken the image on hover */
 }
