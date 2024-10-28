@@ -1,0 +1,23 @@
+.book-intro {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.book-intro > img {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.book-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-description > p {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
