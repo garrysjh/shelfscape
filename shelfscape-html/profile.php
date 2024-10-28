@@ -102,17 +102,18 @@ $conn->close();
             </div>
         </nav>
     </header>
-    <h1>Profile</h1>
+    <div class="profile-data">
+    <h1>Your Profile Information</h1>
     <?php if ($userData): ?>
+        <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100"><br>
         <p><strong>Username:</strong> <?php echo htmlspecialchars($userData['username']); ?></p>
         <p><strong>Email:</strong> <?php echo htmlspecialchars($userData['email']); ?></p>
         <p><strong>Phone:</strong> <?php echo htmlspecialchars($userData['phone']); ?></p>
-        <p><strong>Profile Picture:</strong></p>
-        <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100"><br>
         <p><strong>Account Created:</strong> <?php echo htmlspecialchars($userData['timeCreated']); ?></p>
         <p><strong>Last Login:</strong> <?php echo htmlspecialchars($userData['lastLogin']); ?></p>
     <?php else: ?>
         <p>User data not found.</p>
     <?php endif; ?>
+    </div>
 </body>
 </html>

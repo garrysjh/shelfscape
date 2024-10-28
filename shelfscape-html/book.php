@@ -168,7 +168,7 @@ $conn->close();
                 </div>
                 <div class="form-group">
                   <label for="review">Review:</label>
-                  <textarea name="review" id="review" rows="4" required></textarea>
+                  <textarea name="review" id="review" rows="4" placeholder="Leave your review below!" required></textarea>
                 </div>
                 <button type="submit">Submit Review</button>
               </form>

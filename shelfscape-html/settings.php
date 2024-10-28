@@ -138,27 +138,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </nav>
     </header>
-    <h1>Settings</h1>
-    <form action="settings.php" method="POST" enctype="multipart/form-data">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required><br>
-
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($phone); ?>" required><br>
-
-        <label for="password">Password (leave blank to keep current password):</label>
-        <input type="password" id="password" name="password"><br>
-
-        <label for="profilePicture">Profile Picture:</label>
-        <input type="file" id="profilePicture" name="profilePicture"><br>
-        <?php if ($profilePicture): ?>
-            <img src="<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Picture" width="100"><br>
-        <?php endif; ?>
-
-        <button type="submit">Update Settings</button>
-    </form>
+    <div class="settings-div">
+        <h1>Change your profile information</h1>
+        <form action="settings_process.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($phone); ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password (leave blank to keep current password):</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="profilePicture">Profile Picture:</label>
+                <input type="file" id="profilePicture" name="profilePicture">
+                <?php if ($profilePicture): ?>
+                    <img src="<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Picture" width="100">
+                <?php endif; ?>
+            </div>
+            <button type="submit">Update Settings</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -1,0 +1,36 @@
+body {
+    background-color: #f4f4f4;
+}
+.settings-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.settings-div .form-group {
+    margin-bottom: 20px; /* Add space between form groups */
+}
+
+.settings-div .form-group label {
+    display: block;
+    margin-bottom: 5px; /* Add space between label and input */
+    font-weight: bold; /* Make label text bold */
+}
+
+.settings-div .form-group input,
+.settings-div .form-group select,
+.settings-div .form-group textarea {
+    width: 100%; /* Make input, select, and textarea full width */
+    padding: 10px; /* Add padding for better readability */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 4px; /* Add rounded corners */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.settings-div .form-group textarea {
+    height: 150px; /* Make textarea bigger */
+    resize: vertical; /* Allow vertical resizing */
+}

@@ -21,3 +21,14 @@ body {
 .profile p {
     line-height: 1.6;
 }
+
+.profile-data {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    text-align:center;
+    align-items: center;
+}

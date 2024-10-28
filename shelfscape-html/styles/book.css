@@ -88,3 +88,28 @@ h2 {
     margin-top: 10vh;
     margin-bottom: 10vh;
 }
+
+.form-group {
+    margin-bottom: 20px; /* Add space between form groups */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px; /* Add space between label and input */
+    font-weight: bold; /* Make label text bold */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%; /* Make input, select, and textarea full width */
+    padding: 10px; /* Add padding for better readability */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 4px; /* Add rounded corners */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.form-group textarea {
+    height: 150px; /* Make textarea bigger */
+    resize: vertical; /* Allow vertical resizing */
+}
