@@ -21,3 +21,55 @@
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
+
+.recent-reviews {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.review-section {
+    background-color: #F8F8ED;
+    padding-top: 5vh;
+    padding-bottom: 5vh;    
+}
+
+.review-title {
+    display: flex;
+    align-items: left; /* Align items vertically in the center */
+}
+
+.review-title > img {
+    margin-right: 2vw;
+}
+
+.review {
+    margin-bottom: 20px; /* Add some space between reviews */
+}
+
+.review-profile {
+    display: flex;
+    align-items: center;
+    margin-right: 50vw;
+    justify-content: space-between;
+}
+
+.review-rating {
+    margin-left: 2vw;
+}
+.review-date {
+    text-align: right;
+    margin-left: auto;
+}
+
+.review-content {
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+h2 {
+    margin-bottom: 10vh;
+}

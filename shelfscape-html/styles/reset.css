@@ -89,3 +89,10 @@ body {
 .usericon:hover {
     filter: brightness(0.7); /* Darken the image on hover */
 }
+
+.otherusericon {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    width: 40px;
+    height: auto; 
+}

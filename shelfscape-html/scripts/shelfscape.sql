@@ -13,6 +13,17 @@ CREATE TABLE IF NOT EXISTS `User`(
     `lastLogin` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `profilePicture` VARCHAR(255) DEFAULT "assets/icons/user.png"
 );
+INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+    'admin',
+    'admin',
+    'admin@admin.com',
+    '999');
+
+INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+'johndoe',
+'password123',
+'johndoe@example.com',
+'1234567890');
 
 -- Reviews
 DROP TABLE IF EXISTS
@@ -30,7 +41,15 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VAL
     1,
     '10210.Jane_Eyres',
     5,
-    'This book is amazing',
+    'This book is amazing. It is a work of art. I read this and related very heavily to the main character. This was a beautiful experience. Would highly recommend this work of art to anyone seeking a very passionate read! ',
+    true
+);
+
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VALUES(
+    2,
+    '10210.Jane_Eyres',
+    5,
+    'This book is amazing. It is a work of art. I read this and related very heavily to the main character. This was a beautiful experience. Would highly recommend this work of art to anyone seeking a very passionate read! ',
     true
 );
 

@@ -119,19 +119,27 @@ $conn->close();
         </div>
 </div>
     </main>
-    <section>
+    <section class="review-section">
+      <div class="recent-reviews">
         <h2>Recent Reviews</h2>
         <?php if (!empty($reviews)): ?>
             <?php foreach ($reviews as $review): ?>
                 <div class="review">
-                    <p><strong><?php echo htmlspecialchars($review['username']); ?>:</strong></p>
-                    <p><?php echo htmlspecialchars($review['review']); ?></p>
-                    <p><em><?php echo htmlspecialchars($review['date']); ?></em></p>
+                    <div class="review-title">
+                      <div class="review-profile">
+                      <img src="<?php echo $review['profilePicture']; ?>" alt="User Icon" class="otherusericon"/>
+                      <p><strong><?php echo htmlspecialchars($review['username']); ?></strong></p>
+            </div>
+                      <p class="review-date"><em><?php echo htmlspecialchars($review['date']); ?></em></p>
+                    </div>
+                    <p class="review-rating"><?php echo htmlspecialchars($review['rating']); ?>/5</p>
+                    <p class="review-content"><?php echo htmlspecialchars($review['review']); ?></p>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No reviews found.</p>
+            <p class="review-content" >No reviews found.</p>
         <?php endif; ?>
+        </div>
     </section>
 </body>
 </html>
