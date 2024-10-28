@@ -132,7 +132,8 @@ $conn->close();
             </div>
                       <p class="review-date"><em><?php echo htmlspecialchars($review['date']); ?></em></p>
                     </div>
-                    <p class="review-rating"><?php echo htmlspecialchars($review['rating']); ?>/5</p>
+                    <p class="review-rating"><strong>Rating given: </strong><?php echo htmlspecialchars($review['rating']); ?>/5</p>
+                    <p class="review-content"><strong>Review: </strong></br></p>
                     <p class="review-content"><?php echo htmlspecialchars($review['review']); ?></p>
                 </div>
             <?php endforeach; ?>
