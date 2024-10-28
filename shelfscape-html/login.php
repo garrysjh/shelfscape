@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
         </u>
         <u>
-            <a href="register.html">
+            <a href="register.php">
             Don't have an account? Click here to create!
         </a>
         </u>

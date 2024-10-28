@@ -18,29 +18,40 @@ $limit = 9; // Number of books per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Retrieve search query
+// Retrieve search query and category filter
 $query = isset($_GET['query']) ? $_GET['query'] : '';
+$category = isset($_GET['category']) ? $_GET['category'] : '';
 
-// Modify SQL query based on search query
+// Modify SQL query based on search query and category filter
 if ($query) {
     $sql = "SELECT COUNT(*) as total FROM Books WHERE title LIKE ? OR isbn LIKE ?";
     $stmt = $conn->prepare($sql);
     $searchTerm = '%' . $query . '%';
     $stmt->bind_param("ss", $searchTerm, $searchTerm);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $totalBooks = $result->fetch_assoc()['total'];
-    $totalPages = ceil($totalBooks / $limit);
+} elseif ($category) {
+    $sql = "SELECT COUNT(*) as total FROM Books WHERE genres LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $categoryTerm = '%' . $category . '%';
+    $stmt->bind_param("s", $categoryTerm);
+} else {
+    $sql = "SELECT COUNT(*) as total FROM Books";
+    $stmt = $conn->prepare($sql);
+}
 
+$stmt->execute();
+$result = $stmt->get_result();
+$totalBooks = $result->fetch_assoc()['total'];
+$totalPages = ceil($totalBooks / $limit);
+
+if ($query) {
     $sql = "SELECT bookId, title, author, coverImg FROM Books WHERE title LIKE ? OR isbn LIKE ? LIMIT ? OFFSET ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssii", $searchTerm, $searchTerm, $limit, $offset);
+} elseif ($category) {
+    $sql = "SELECT bookId, title, author, coverImg FROM Books WHERE genres LIKE ? LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sii", $categoryTerm, $limit, $offset);
 } else {
-    $sql = "SELECT COUNT(*) as total FROM Books";
-    $result = $conn->query($sql);
-    $totalBooks = $result->fetch_assoc()['total'];
-    $totalPages = ceil($totalBooks / $limit);
-
     $sql = "SELECT bookId, title, author, coverImg FROM Books LIMIT ? OFFSET ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $limit, $offset);
@@ -127,15 +138,15 @@ $conn->close();
         <!-- Pagination Links -->
         <div class="pagination">
             <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>&query=<?php echo urlencode($query); ?>">Previous</a>
+                <a href="?page=<?php echo $page - 1; ?>&query=<?php echo urlencode($query); ?>&category=<?php echo urlencode($category); ?>">Previous</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="?page=<?php echo $i; ?>&query=<?php echo urlencode($query); ?>" <?php if ($i == $page) echo 'class="active"'; ?>><?php echo $i; ?></a>
+                <a href="?page=<?php echo $i; ?>&query=<?php echo urlencode($query); ?>&category=<?php echo urlencode($category); ?>" <?php if ($i == $page) echo 'class="active"'; ?>><?php echo $i; ?></a>
             <?php endfor; ?>
 
             <?php if ($page < $totalPages): ?>
-                <a href="?page=<?php echo $page + 1; ?>&query=<?php echo urlencode($query); ?>">Next</a>
+                <a href="?page=<?php echo $page + 1; ?>&query=<?php echo urlencode($query); ?>&category=<?php echo urlencode($category); ?>">Next</a>
             <?php endif; ?>
         </div>
         </div>
