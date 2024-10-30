@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `User`(
     `profilePicture` VARCHAR(255) DEFAULT "assets/icons/user.png"
 );
 INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
-    'admin',
+    'chickenlittle',
     'admin',
     'admin@admin.com',
     '999');
