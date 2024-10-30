@@ -14,8 +14,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get book ID from URL parameter
-$bookId = $_GET['id'];
+$defaultBookId = "10210.Jane_Eyre"; // Change this to your desired book ID
+$bookId = isset($_GET['id']) ? $_GET['id'] : $defaultBookId;
+
 
 // Retrieve book details
 $sql = "SELECT title, author, coverImg, isbn, description, genres FROM Books WHERE bookId = ?";

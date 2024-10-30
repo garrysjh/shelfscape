@@ -1,5 +1,60 @@
 <?php
-include 'book.php'; // Include the file that retrieves the book and reviews
+session_start();
+
+// Database configuration
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "shelfscape";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Retrieve bookId with the highest average rating for the current month and year
+$sql = "SELECT bookId
+        FROM Reviews
+        WHERE MONTH(date) = MONTH(CURRENT_DATE())
+          AND YEAR(date) = YEAR(CURRENT_DATE())
+        GROUP BY bookId
+        ORDER BY AVG(rating) DESC
+        LIMIT 1";
+$result = $conn->query($sql);
+
+$bookId = 0;
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $bookId = $row['bookId'];
+}
+
+// Retrieve book details
+$bookDetails = [];
+if ($bookId) {
+    $stmt = $conn->prepare("SELECT * FROM Books WHERE bookId = ?");
+    $stmt->bind_param("i", $bookId);
+    $stmt->execute();
+    $bookDetails = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+}
+
+// Retrieve 3 most recent reviews for the book
+$reviews = [];
+if ($bookId) {
+    $stmt = $conn->prepare("SELECT u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3");
+    $stmt->bind_param("i", $bookId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        $reviews[] = $row;
+    }
+    $stmt->close();
+}
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,9 +102,20 @@ include 'book.php'; // Include the file that retrieves the book and reviews
                 </form>
             </div>
             <div class="account-icon">
-                <a href="login.php">
-                    <img src="assets/icons/user.png" alt="User Icon" />
-                </a>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+                    <div class="dropdown">
+                        <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="User Icon" class="usericon"/>
+                        <div class="dropdown-content">
+                            <a href="profile.php">Profile</a>
+                            <a href="settings.php">Settings</a>
+                            <a href="logout.php">Logout</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="login.php">
+                        <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+                    </a>
+                <?php endif; ?>
             </div>
         </nav>
     </header>
@@ -79,11 +145,10 @@ include 'book.php'; // Include the file that retrieves the book and reviews
     <div class="featured-book">
         <h2>Book of the Month</h2>
         <br>
-        <img src="<?php echo $book['coverImg']; ?>" alt="<?php echo $book['title']; ?> Cover Image" class="book-cover">
-        <h3><?php echo $book['title']; ?></h3>
-        <p><strong>Author: </strong><?php echo $book['author']; ?></p>
+        <img src="<?php echo $bookDetails['coverImg']; ?>" alt="<?php echo $bookDetails['title']; ?> Cover Image" class="book-cover">
+        <h3><?php echo $bookDetails['title']; ?></h3>
+        <p><strong>Author: </strong><?php echo $bookDetails['author']; ?></p>
     </div>
-
     <!-- Reviews Section -->
     <div class="latest-reviews">
         <h2>Recent Reviews</h2>
