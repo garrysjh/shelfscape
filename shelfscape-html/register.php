@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <a href="events.html">Events</a>
           <a href="aboutus.html">About</a>
-          <a href="donate.html">Donate</a>
+          <a href="donate.php">Donate</a>
         </div>
         <div class="search-bar">
           <form action="books.php" method="GET">
