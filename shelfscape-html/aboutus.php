@@ -37,7 +37,6 @@
                 <form action="books.php" method="GET">
                     <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
                     <button type="submit" class="search-button">Search</button>
-                    <i class="fas fa-search"></i>
                 </form>
             </div>
             <div class="account-icon">
@@ -50,60 +49,53 @@
 
     <!-- Main Content -->
     <main>
-
-        
         <section class="we-are">
-            <div class="content"></div>
             <h2>About Us</h2>
             <p>Hello! ShelfScape was founded by Garry and Josiah, year 4 students from NTU EEE.</p>
-            <br>
-                <img src="assets/icons/shelfscape_digital_library_img.jpg"alt="We Are ShelfScape Image" class="we-are-image"></div>
+            <div class="about-content">
+                <img src="assets/icons/shelfscape_digital_library_img.jpg" alt="We Are ShelfScape Image" class="we-are-image">
                 <div class="text">
-                    <br>
                     <h2>We Are ShelfScape</h2>
-                    <p>Shelfscape plans to disrupt the conventional library system in place today. The first online digital library, providing free of charge e-books to everyone, anywhere. We have a database of over 10,000,000+ books to choose from, come and try ShelfScape today!</p>
+                    <p>Shelfscape plans to disrupt the conventional library system in place today. The first online digital library, providing free of charge e-books to everyone, anywhere. We have a database of over 10,000,000+ books to choose from. Come and try ShelfScape today!</p>
                 </div>
             </div>
-    </section>
-    </main>
+        </section>
 
-    <!-- Full-width Carousel -->
-    <section class="we-create">
-        <br>
-        <h2>We Create</h2>
-        <br>
-        <div class="carousel-wrapper">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="assets/icons/library_carousel_1.png" alt="Image 1 Description">
+        <!-- Full-width Carousel -->
+        <section class="we-create">
+            <h2>We Create</h2>
+            <div class="carousel-wrapper">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/icons/library_carousel_1.png" alt="Image 1 Description">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/icons/library_carousel_2.png" alt="Image 2 Description">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/icons/library_carousel_3.png" alt="Image 3 Description">
+                    </div>
                 </div>
-                <div class="carousel-item">
-                  <img src="assets/icons/library_carousel_2.png" alt="Image 2 Description">
-                </div>
-                <div class="carousel-item">
-                  <img src="assets/icons/library_carousel_3.png" alt="Image 3 Description">
-                </div>
+                <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
+                <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
             </div>
-            <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
-            <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
-        </div>
-    </section>
- <!-- Locate Us Section -->
- <section class="locate-us">
-  <h2>Locate Us</h2>
-  <br>
-  <p>School of Electrical and Electronic Engineering </p>
-  <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.72281751501!2d103.67816467586454!3d1.3426961986446004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0f75a53bec9d%3A0xd08547c621f6dca6!2sSchool%20of%20Electrical%20and%20Electronic%20Engineering%20(EEE)!5e0!3m2!1sen!2ssg!4v1730082262426!5m2!1sen!2ssg" 
-      width="600" 
-      height="450" 
-      style="border:0;" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</section>
-</main>
+        </section>
+
+        <!-- Locate Us Section -->
+        <section class="locate-us">
+            <h2>Locate Us</h2>
+            <p>School of Electrical and Electronic Engineering</p>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.72281751501!2d103.67816467586454!3d1.3426961986446004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0f75a53bec9d%3A0xd08547c621f6dca6!2sSchool%20of%20Electrical%20and%20Electronic%20Engineering%20(EEE)!5e0!3m2!1sen!2ssg!4v1730082262426!5m2!1sen!2ssg" 
+                width="600" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </section>
+    </main>
 
     <!-- Full-width Footer -->
     <footer class="footer">
@@ -144,15 +136,15 @@
                     </ul>
                 </div>
                 <div class="link-column">
-                  <h3>Contact Us!</h3>
-                  <ul>
-                      <li><a href="contact.html">Contact Now</a></li>
-                  </ul>
-              </div>
+                    <h3>Contact Us!</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Now</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
-    
+
     <script>
         let currentIndex = 0;
 
