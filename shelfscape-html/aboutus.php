@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <a href="events.html">Events</a>
-                <a href="aboutus.html">About</a>
+                <a href="aboutus.php">About</a>
                 <a href="donate.html">Donate</a>
             </div>
             <div class="search-bar">
