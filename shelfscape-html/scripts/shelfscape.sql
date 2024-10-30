@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `User`(
 );
 INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
     'admin',
-    'admin',
+    '$2a$12$X2fd3O2DJDUJ.dRwBOXBh.NLmzphZ3vV3qZq0Z7zOOeyGkMLBieqy',
     'admin@admin.com',
     '999');
 
