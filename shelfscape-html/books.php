@@ -14,6 +14,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
 // Pagination settings
 $limit = 9; // Number of books per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;

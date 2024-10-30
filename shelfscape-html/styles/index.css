@@ -1,0 +1,434 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Full-width Navbar */
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px;
+    background-color: #F8F8ED;
+    color: black;
+}
+
+/* Navbar Elements */
+.logo img {
+    width: 40px;
+    height: auto;
+}
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: black;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #555;
+    color: white;
+}
+
+/* Dropdown Menu */
+.navbar .dropdown {
+    position: relative;
+}
+
+.navbar .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #F8F8ED;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.navbar .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Search and Account Icon */
+.navbar .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.account-icon img {
+    width: 40px;
+    height: auto;
+}
+
+
+
+.book-of-the-month {
+    width: 80%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.featured-book {
+    text-align: left;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.latest-reviews .review-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+/* Full-width Carousel */
+.we-create {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 2rem;
+    background-color: #fff;
+    text-align: center;
+    color: #8b0000; /* Optional color for emphasis */
+}
+
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100vw;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+/* Book of the Month */
+.book-review-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: #F8F8ED;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Book Details Styling */
+.featured-book {
+    flex: 1;
+    max-width: 45%;
+    text-align: center;
+    background-color: #FFF;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.featured-book img.book-cover {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.featured-book h3 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.featured-book p {
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Reviews Section Styling */
+.latest-reviews {
+    flex: 1;
+    max-width: 50%;
+}
+
+.latest-reviews h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #8B0000;
+}
+
+.review-card {
+    background-color: #FFF;
+    border: 1px solid #E6E6E6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.review-card h4 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.review-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.review-meta img.reviewer-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+}
+
+.review-meta .reviewer-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.review-meta .review-date,
+.review-meta .review-rating {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Styling for the Write a Review Section */
+.write-review-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.write-review-div {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #F8F8ED;
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.write-review-div h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.write-review-div p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.write-review-div .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.write-review-div label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.write-review-div select, 
+.write-review-div textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.write-review-div textarea {
+    resize: vertical;
+}
+
+.write-review-div button {
+    padding: 10px 15px;
+    width: 100%;
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.write-review-div button:hover {
+    background-color: #a30000;
+}
+
+.write-review-div a {
+    color: #8b0000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.write-review-div a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Full-width Footer */
+.footer {
+    width: 100%;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Footer Inner Content */
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo img {
+    max-width: 100px;
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    width:min-content;
+    height:min-content;
+    gap: 0.5rem;
+}
+
+/* Footer social media icons */
+.footer .social-icons img {
+    width: 20px; /* Adjust width to make the icon smaller */
+    height: 20px; /* Adjust height to match width for proportional scaling */
+    transition: transform 0.2s;
+}
+
+.footer .social-icons img:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.link-column h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.link-column ul {
+    list-style: none;
+}
+
+.link-column li {
+    margin-bottom: 0.5rem;
+}
+
+.link-column a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.link-column a:hover {
+    color: #000;
+}
+
