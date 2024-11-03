@@ -61,6 +61,7 @@ $conn->close();
   <head>
     <title>Shelfscape: Homepage</title>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="./assets/icons/shelfscape-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

@@ -67,6 +67,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shelfscape: All Reviews</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icons/shelfscape-logo.png">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/reviews.css">
 </head>

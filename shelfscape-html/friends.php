@@ -88,6 +88,7 @@ $conn->close();
 <head>
     <title>Shelfscape: Friends</title>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="./assets/icons/shelfscape-logo.png">
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/friends.css"/>
 </head>
