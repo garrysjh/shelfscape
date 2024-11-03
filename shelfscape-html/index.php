@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
 $bookDetails = [];
 if ($bookId) {
     $stmt = $conn->prepare("SELECT * FROM Books WHERE bookId = ?");
-    $stmt->bind_param("i", $bookId);
+    $stmt->bind_param("s", $bookId);
     $stmt->execute();
     $bookDetails = $stmt->get_result()->fetch_assoc();
     $stmt->close();
@@ -45,7 +45,7 @@ if ($bookId) {
 $reviews = [];
 if ($bookId) {
     $stmt = $conn->prepare("SELECT u.id, u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3");
-    $stmt->bind_param("i", $bookId);
+    $stmt->bind_param("s", $bookId);
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {

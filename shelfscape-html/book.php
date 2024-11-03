@@ -20,7 +20,7 @@ $bookId = isset($_GET['id']) ? $_GET['id'] : 0;
 // Retrieve book details
 $book_sql = "SELECT * FROM Books WHERE BookId = ?";
 $stmt = $conn->prepare($book_sql);
-$stmt->bind_param("i", $bookId);
+$stmt->bind_param("s", $bookId);
 $stmt->execute();
 $book_result = $stmt->get_result();
 $book = $book_result->fetch_assoc();
@@ -35,7 +35,7 @@ WHERE r.bookId = ?
 ORDER BY r.date DESC 
 LIMIT 3";
 $stmt = $conn->prepare($reviews_sql);
-$stmt->bind_param("i", $bookId);
+$stmt->bind_param("s", $bookId);
 $stmt->execute();
 $reviews_result = $stmt->get_result();
 $reviews = [];
