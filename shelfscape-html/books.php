@@ -68,8 +68,6 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         $books[] = $row;
     }
-} else {
-    echo "No books found.";
 }
 $conn->close();
 ?>
@@ -154,6 +152,7 @@ $conn->close();
             <?php endif; ?>
         </div>
         <div class="books-container">
+          <?php if (!empty($books)): ?>
             <?php foreach ($books as $book): ?>
               <div class="book">
                     <a href="book.php?id=<?php echo $book['bookId']; ?>">
@@ -163,6 +162,9 @@ $conn->close();
                     </a>
                 </div>
             <?php endforeach; ?>
+              <?php else: ?>
+                  <p>No books found.</p>
+              <?php endif; ?>
         </div>
         <!-- Pagination Links -->
         <div class="pagination">
