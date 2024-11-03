@@ -173,6 +173,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
         </u>
       </div>
+       <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
+                <div class="social-icons">
+                    <a href="#"><img src="assets/icons/X.jfif" alt="X Icon"></a>
+                    <a href="#"><img src="assets/icons/facebook.jfif" alt="Facebook Icon"></a>
+                    <a href="#"><img src="assets/icons/instagram.jfif" alt="Instagram Icon"></a>
+                    <a href="#"><img src="assets/icons/youtube.jfif" alt="YouTube Icon"></a>
+                    <a href="#"><img src="assets/icons/linkedin.jfif" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Career Opportunities</a></li>
+                        <li><a href="#">Working at ShelfScape</a></li>
+                        <li><a href="#">Scholarship</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Read with us</h3>
+                    <ul>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">eBooks</a></li>
+                        <li><a href="#">Magazines</a></li>
+                        <li><a href="#">Newspapers</a></li>
+                        <li><a href="#">Reading Initiatives</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Join Our Mailing List</h3>
+                    <ul>
+                        <li><a href="contact.php">Subscribe Now</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Contact Us!</h3>
+                    <ul>
+                        <li><a href="contact.php">Contact Now</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
   </body>
   <script></script>
 </html>
