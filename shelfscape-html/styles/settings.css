@@ -1,36 +1,98 @@
-body {
-    background-color: #f4f4f4;
-}
+/* Main container for settings page */
 .settings-div {
+    width: 80%;
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.settings-div h1 {
+    font-size: 2rem;
+    color: #003f5c;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Specific styling for settings form */
+.settings-form {
     display: flex;
     flex-direction: column;
-    margin-left: 15vw;
-    margin-right: 15vw;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    gap: 1.2rem;
 }
 
-.settings-div .form-group {
-    margin-bottom: 20px; /* Add space between form groups */
+.settings-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
 }
 
-.settings-div .form-group label {
-    display: block;
-    margin-bottom: 5px; /* Add space between label and input */
-    font-weight: bold; /* Make label text bold */
+.settings-form .form-group label {
+    font-size: 1rem;
+    color: #58508d;
+    margin-bottom: 0.5rem;
 }
 
-.settings-div .form-group input,
-.settings-div .form-group select,
-.settings-div .form-group textarea {
-    width: 100%; /* Make input, select, and textarea full width */
-    padding: 10px; /* Add padding for better readability */
-    border: 1px solid #ccc; /* Add border */
-    border-radius: 4px; /* Add rounded corners */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+.settings-form .form-group input[type="text"],
+.settings-form .form-group input[type="email"],
+.settings-form .form-group input[type="password"],
+.settings-form .form-group input[type="file"] {
+    padding: 0.7rem;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
-.settings-div .form-group textarea {
-    height: 150px; /* Make textarea bigger */
-    resize: vertical; /* Allow vertical resizing */
+.settings-form .form-group input[type="text"]:focus,
+.settings-form .form-group input[type="email"]:focus,
+.settings-form .form-group input[type="password"]:focus,
+.settings-form .form-group input[type="file"]:focus {
+    border-color: #58508d;
+}
+
+.settings-form .form-group img {
+    margin-top: 0.5rem;
+    border-radius: 5px;
+}
+
+/* Specific styling for submit button on settings page */
+.settings-submit-button {
+    padding: 0.8rem 1.5rem;
+    background-color: #003f5c;
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-submit-button:hover {
+    background-color: #58508d;
+}
+
+/* Adjustments for small screens */
+@media (max-width: 600px) {
+    .settings-div {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .settings-form .form-group input[type="text"],
+    .settings-form .form-group input[type="email"],
+    .settings-form .form-group input[type="password"],
+    .settings-form .form-group input[type="file"] {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+    
+    .settings-submit-button {
+        font-size: 0.9rem;
+    }
 }
