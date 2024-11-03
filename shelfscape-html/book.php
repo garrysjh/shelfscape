@@ -14,33 +14,69 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$defaultBookId = "10210.Jane_Eyre"; // Change this to your desired book ID
-$bookId = isset($_GET['id']) ? $_GET['id'] : $defaultBookId;
-
+// Get book ID from URL parameter
+$bookId = isset($_GET['id']) ? $_GET['id'] : 0;
 
 // Retrieve book details
-$sql = "SELECT title, author, coverImg, isbn, description, genres FROM Books WHERE bookId = ?";
-$stmt = $conn->prepare($sql);
+$book_sql = "SELECT * FROM Books WHERE BookId = ?";
+$stmt = $conn->prepare($book_sql);
 $stmt->bind_param("i", $bookId);
 $stmt->execute();
-$result = $stmt->get_result();
+$book_result = $stmt->get_result();
+$book = $book_result->fetch_assoc();
+$stmt->close();
 
-$book = $result->fetch_assoc();
-
-// Retrieve 3 most recent reviews for the book
-$sql = "SELECT u.id, u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3";
-$stmt = $conn->prepare($sql);
+// Retrieve recent reviews for the book
+$reviews_sql = "
+SELECT u.username, u.profilePicture, r.userId, r.review, r.rating, r.date 
+FROM reviews r 
+JOIN user u ON r.userId = u.id 
+WHERE r.bookId = ? 
+ORDER BY r.date DESC 
+LIMIT 3";
+$stmt = $conn->prepare($reviews_sql);
 $stmt->bind_param("i", $bookId);
 $stmt->execute();
-$result = $stmt->get_result();
-
+$reviews_result = $stmt->get_result();
 $reviews = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $reviews[] = $row;
-    }
+$total_rating = 0;
+$review_count = 0;
+while ($row = $reviews_result->fetch_assoc()) {
+    $reviews[] = $row;
+    $total_rating += $row['rating'];
+    $review_count++;
 }
 $stmt->close();
+
+// Calculate average rating for the current book
+$average_rating = $review_count > 0 ? $total_rating / $review_count : 0;
+
+// Retrieve average rating for all books
+$all_books_sql = "
+SELECT AVG(rating) AS avg_rating 
+FROM reviews";
+$stmt = $conn->prepare($all_books_sql);
+$stmt->execute();
+$all_books_result = $stmt->get_result();
+$all_books_avg_rating = $all_books_result->fetch_assoc()['avg_rating'];
+$stmt->close();
+
+// Retrieve ranking of the current book
+$ranking_sql = "
+SELECT COUNT(*) + 1 AS rank 
+FROM (
+    SELECT AVG(rating) AS avg_rating 
+    FROM reviews 
+    GROUP BY bookId 
+    HAVING avg_rating > ?
+) AS subquery";
+$stmt = $conn->prepare($ranking_sql);
+$stmt->bind_param("d", $average_rating);
+$stmt->execute();
+$ranking_result = $stmt->get_result();
+$ranking = $ranking_result->fetch_assoc()['rank'];
+$stmt->close();
+
 $conn->close();
 ?>
 
@@ -125,20 +161,23 @@ $conn->close();
         <p><strong>Genres: </strong><?php echo $book['genres'] ? join(', ', json_decode($book['genres'], true)) : 'No genre specified'; ?></p>
         <p><?php echo $book['description']; ?></p>
         </div>
+
 </div>
     </main>
     <section class="review-section">
       <div class="recent-reviews">
         <h2>Recent Reviews</h2>
+        <p class="average"><strong>Average Rating: </strong><?php echo $average_rating > 0 ? number_format($average_rating, 2) . '/5' : 'No rating'; ?></p>
+        <p class="ranking"><strong>Ranking: </strong><?php echo $ranking; ?> out of all books</p>
         <?php if (!empty($reviews)): ?>
             <?php foreach ($reviews as $review): ?>
                 <div class="review">
                     <div class="review-title">
                       <div class="review-profile">
-                        <a href="profile.php?id=<?php echo $review['id']; ?>">
+                        <a href="profile.php?id=<?php echo $review['userId']; ?>">
                       <img src="<?php echo $review['profilePicture']; ?>" alt="User Icon" class="otherusericon"/>
                       </a>
-                      <a href="profile.php?id=<?php echo $review['id']; ?>">
+                      <a href="profile.php?id=<?php echo $review['userId']; ?>">
                       <p><strong><?php echo htmlspecialchars($review['username']); ?></strong></p>
                       </a>
             
@@ -152,9 +191,9 @@ $conn->close();
             <?php endforeach; ?>
             <a href="all_reviews.php?bookId=<?php echo $bookId; ?>" class="all-reviews">View all reviews</a>
         <?php else: ?>
-            <p class="review-content" >No reviews found.</p>
+            <p class="review-content">No reviews found.</p>
         <?php endif; ?>
-        </div>
+      </div>
     </section>
     <section class="write-review-section">
           <div class="write-review-div">
