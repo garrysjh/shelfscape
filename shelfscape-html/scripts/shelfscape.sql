@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS `CartItems`;
 CREATE TABLE IF NOT EXISTS `CartItems`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `userId` INT NOT NULL, -- foreign key for id from users
-    `bookId` VARCHAR(135) NOT NULL -- foreign key for bookId
+    `bookId` VARCHAR(135) UNIQUE NOT NULL -- foreign key for bookId
 );
 
 
