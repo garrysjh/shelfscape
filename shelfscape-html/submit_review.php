@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insert review into database
     $stmt = $conn->prepare("INSERT INTO reviews (bookId, userId, rating, recommended, review) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("iiiss", $bookId, $userId, $rating, $recommended, $review);
+    $stmt->bind_param("siiss", $bookId, $userId, $rating, $recommended, $review);
 
     if ($stmt->execute()) {
         // Redirect to book details page with success message
