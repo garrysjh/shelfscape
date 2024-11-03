@@ -42,7 +42,7 @@ if ($stmt->execute()) {
     // Redirect back to donate.php with success message
     echo "<script>
             alert('Book donated successfully!');
-            window.location.href = 'donate.php';
+            window.location.href = 'index.php';
           </script>";
 } else {
     echo "Error: " . $stmt->error;
