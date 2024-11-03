@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </head>
   <body>
     <!-- Full-width Header -->
-    <header>
+<header>
         <nav class="navbar">
             <div class="logo">
                 <a href="index.php">
@@ -113,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="dropdown-content login-dropdown-content">
                             <a href="profile.php?id=<?php echo htmlspecialchars($_SESSION['user_id']); ?>">Profile</a>
                             <a href="friends.php">Friends</a>
+                            <a href="cart.php">Cart</a>
                             <a href="settings.php">Settings</a>
                             <a href="logout.php">Logout</a>
                         </div>
