@@ -148,6 +148,7 @@ session_start();
         <h3>The Birth of ShelfScape</h3>
         <div class="content">
             <p>Fueled by this vision, we embarked on a mission to disrupt the conventional library system. We wanted to leverage our engineering skills to create a platform that democratizes access to knowledge. After countless brainstorming sessions and late-night coding marathons, ShelfScape was born—the first online digital library offering free e-books to everyone.</p>
+            <br>
             <img src="assets/icons/coding_sessions.png" display="block" margin="0 auto" height="650px" width="940px" alt="Late-night coding session" class="interactive-img">
         </div>
     </div>
