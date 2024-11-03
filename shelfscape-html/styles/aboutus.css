@@ -6,16 +6,6 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-/* Full-width Navbar */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 40px;
-    color: black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-}
-
 
 /* Main Content Centering */
 main {

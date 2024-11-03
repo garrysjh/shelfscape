@@ -13,6 +13,7 @@ session_start();
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/donate.css" />
   </head>
   <body>
     <!-- Full-width Header -->
@@ -67,6 +68,7 @@ session_start();
         </nav>
     </header>
     <main>
+      <div class="donate-container">
       <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
         <h2>Donate a Book</h2>
         <form action="donate_process.php" method="POST">
@@ -93,6 +95,7 @@ session_start();
       <?php else: ?>
         <p>Please <a href="login.php">log in</a> to donate a book.</p>
       <?php endif; ?>
+      </div>
 
       <!-- Full-width Footer -->
     <footer class="footer">
@@ -143,68 +146,4 @@ session_start();
     </footer>
     </main>
   </body>
-  <style>
-/* Footer */
-.footer {
-    padding: 2rem;
-    background-color: #EDEDF5;
-    color: #555;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer-logo img {
-    max-width: 100px;
-    margin-bottom: 1rem;
-}
-
-.social-icons {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-icons img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s;
-}
-
-.social-icons img:hover {
-    transform: scale(1.1);
-}
-
-.footer-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.link-column h3 {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.link-column ul {
-    list-style: none;
-}
-
-.link-column li {
-    margin-bottom: 0.5rem;
-}
-
-.link-column a {
-    text-decoration: none;
-    color: #555;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-}
-
-.link-column a:hover {
-    color: #003f5c;
-}</style>
 </html>
