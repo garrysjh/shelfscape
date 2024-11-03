@@ -52,22 +52,31 @@ $stmt->close();
 // Retrieve confirmed friends
 $confirmed_sql = "
 SELECT 
-    CASE 
-        WHEN userId = ? THEN friendId 
-        ELSE userId 
-    END AS friend
+    u.id AS friendId,
+    u.username,
+    u.profilePicture
 FROM 
-    Friends
+    Friends f
+JOIN 
+    User u 
+    ON u.id = CASE 
+                 WHEN f.userId = ? THEN f.friendId 
+                 ELSE f.userId 
+              END
 WHERE 
-    (userId = ? OR friendId = ?)
-    AND status = 'CONFIRMED'";
+    (f.userId = ? OR f.friendId = ?)
+    AND f.status = 'CONFIRMED';";
 $stmt = $conn->prepare($confirmed_sql);
 $stmt->bind_param("iii", $user_id, $user_id, $user_id);
 $stmt->execute();
 $confirmed_result = $stmt->get_result();
 $confirmed_friends = [];
 while ($row = $confirmed_result->fetch_assoc()) {
-    $confirmed_friends[] = $row['friend'];
+    $confirmed_friends[] = [
+        'id' => $row['friendId'],
+        'username' => $row['username'],
+        'profilePicture' => $row['profilePicture']
+    ];
 }
 $stmt->close();
 
@@ -156,14 +165,19 @@ $conn->close();
                 <p>No pending friends.</p>
             <?php endif; ?>
         </div>
-        <div class="confirmed-friends">
+
             <h2>Confirmed Friends</h2>
+            <div class="pending-friends-container">
             <?php if (!empty($confirmed_friends)): ?>
-                <ul>
                     <?php foreach ($confirmed_friends as $confirmed_friend): ?>
-                        <li><?php echo htmlspecialchars($confirmed_friend); ?></li>
+                        <div class="pending-friends">
+                        <a href="profile.php?id=<?php echo htmlspecialchars($confirmed_friend['id']); ?>" class="friend-link">
+                            <img src="<?php echo htmlspecialchars($confirmed_friend['profilePicture']); ?>" alt="Profile Picture" class="profile-pic">
+                            <span class="friend-username"><?php echo htmlspecialchars($confirmed_friend['username']); ?></span>
+                        </a>
+                        </div>
                     <?php endforeach; ?>
-                </ul>
+                    </div>
             <?php else: ?>
                 <p>No confirmed friends.</p>
             <?php endif; ?>
