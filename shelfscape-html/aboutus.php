@@ -11,6 +11,57 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/aboutus.css" />
+    <style>
+        /* Carousel Styling */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            padding: 1rem;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 300%; /* Adjust width based on the number of slides */
+        }
+
+        .carousel-item {
+            min-width: 100%; /* Each item takes up the full width of the container */
+            text-align: center;
+        }
+
+        .carousel-item img {
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1;
+        }
+
+        .carousel-button.prev {
+            left: 15px;
+        }
+
+        .carousel-button.next {
+            right: 15px;
+        }
+    </style>
 </head>
 <body>
     <!-- Full-width Header -->
@@ -118,7 +169,7 @@ session_start();
         </section>
     </main>
 
-    <!-- Full-width Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -172,7 +223,6 @@ session_start();
         function showSlide(index) {
             const slides = document.querySelectorAll('.carousel-item');
             const totalSlides = slides.length;
-
             currentIndex = (index + totalSlides) % totalSlides;
             document.querySelector('.carousel-inner').style.transform = `translateX(-${currentIndex * 100}%)`;
         }

@@ -84,7 +84,7 @@
 
         <!-- Carousel for Events in November -->
         <section class="upcoming-events">
-            <h2 style="margin-left: 5vw;">Events in NOVEMBER</h2>
+            <h2 class="events-header">Events in NOVEMBER</h2>
             <div class="carousel-wrapper">
                 <div class="carousel-inner">
                     <div class="carousel-item active">

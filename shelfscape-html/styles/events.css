@@ -110,3 +110,11 @@ body {
             right: 10px;
         }
 
+/* Centralize Events Header */
+.events-header {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}

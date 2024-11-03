@@ -1,23 +1,29 @@
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
 }
+
 .container {
     width: 80%;
     margin: auto;
     overflow: hidden;
 }
+
+/* Profile Section */
 .profile {
     background: #fff;
     padding: 20px;
     margin-top: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .profile h2 {
     margin-top: 0;
 }
+
 .profile p {
     line-height: 1.6;
 }
@@ -25,17 +31,106 @@ body {
 .profile-data {
     display: flex;
     flex-direction: column;
-    margin-left: 15vw;
-    margin-right: 15vw;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    text-align:center;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
     align-items: center;    
 }
 
-.friends {
-    color: green;
+.profile-data h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
 }
+
+.profile-data p, 
+.profile-data strong {
+    color: #555;
+    margin: 0.5rem 0;
+}
+
+.profile-data img {
+    display: block;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Button Styling */
+.profile-data button {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem 1.5rem;
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-data button:hover {
+    background-color: #a00000;
+}
+
+/* Status Styling */
+.status-friends {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+.status-pending {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.friends, 
 .pending {
-    color: brown;
+    color: #8b0000;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* Review Section Styling */
+.review {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.review img {
+    width: 50px;
+    height: 75px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.review strong {
+    color: #333;
+}
+
+.review p {
+    color: #555;
+    margin: 0.5rem 0;
+}
+
+.review-date, 
+.review-rating, 
+.review-recommended {
+    font-size: 0.9rem;
+    color: #777;
 }

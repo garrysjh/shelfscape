@@ -163,17 +163,18 @@ $conn->close();
     <div class="profile-data">
         <h1>Profile Information</h1>
         <?php if ($userData): ?>
-            <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100"><br>
+            <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture">
             <p><strong>Username:</strong> <?php echo htmlspecialchars($userData['username']); ?></p>
             <p><strong>Email:</strong> <?php echo htmlspecialchars($userData['email']); ?></p>
             <p><strong>Phone:</strong> <?php echo htmlspecialchars($userData['phone']); ?></p>
             <p><strong>Account Created:</strong> <?php echo htmlspecialchars($userData['timeCreated']); ?></p>
             <p><strong>Last Login:</strong> <?php echo htmlspecialchars($userData['lastLogin']); ?></p>
+
             <?php if ((int)$_SESSION['user_id'] !== (int)$user_id): ?>
                 <?php if ($is_friend): ?>
-                    <p class="friends"><strong>Status:</strong> Friends</p>
+                    <p class="status-friends"><strong>Status:</strong> Friends</p>
                 <?php elseif ($is_pending): ?>
-                    <p class="pending"><strong>Status:</strong> Pending</p>
+                    <p class="status-pending"><strong>Status:</strong> Pending Friend Request</p>
                 <?php else: ?>
                     <form method="POST" action="send_friend_request.php">
                         <input type="hidden" name="friend_id" value="<?php echo htmlspecialchars($profile_id); ?>">
@@ -184,27 +185,26 @@ $conn->close();
         <?php else: ?>
             <p>User data not found.</p>
         <?php endif; ?>
+
         <h1>Recent Reviews</h1>
         <?php if (!empty($reviews)): ?>
-                <?php foreach ($reviews as $review): ?>
-                    <div class="review">
-                        <div style="float: left; margin-right: 10px;">
-                            <img src="<?php echo htmlspecialchars($review['coverImg']); ?>" alt="Book Cover" width="50">
-                            <p><strong><?php echo htmlspecialchars($review['title']); ?></strong></p>
-                        </div>
-                        <div>
-                            <p><strong>Review:</strong> <?php echo htmlspecialchars($review['review']); ?></p>
-                            <p><strong>Date:</strong> <?php echo htmlspecialchars($review['date']); ?></p>
-                            <p><strong>Rating:</strong> <?php echo htmlspecialchars($review['rating']); ?> / 5</p>
-                            <p><strong>Recommended:</strong> <?php echo $review['recommended'] ? 'Yes' : 'No'; ?></p>
-                        </div>
-                        <div style="clear: both;"></div>
+            <?php foreach ($reviews as $review): ?>
+                <div class="review">
+                    <img src="<?php echo htmlspecialchars($review['coverImg']); ?>" alt="Book Cover">
+                    <div>
+                        <p><strong>Book Title:</strong> <?php echo htmlspecialchars($review['title']); ?></p>
+                        <p><strong>Review:</strong> <?php echo htmlspecialchars($review['review']); ?></p>
+                        <p class="review-date"><strong>Date:</strong> <?php echo htmlspecialchars($review['date']); ?></p>
+                        <p class="review-rating"><strong>Rating:</strong> <?php echo htmlspecialchars($review['rating']); ?> / 5</p>
+                        <p class="review-recommended"><strong>Recommended:</strong> <?php echo $review['recommended'] ? 'Yes' : 'No'; ?></p>
                     </div>
-                <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
         <?php else: ?>
             <p>No reviews found.</p>
         <?php endif; ?>
-    </div>
+</div>
+
      <!-- Footer -->
      <footer class="footer">
         <div class="footer-content">
