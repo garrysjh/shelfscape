@@ -34,6 +34,18 @@ CREATE TABLE IF NOT EXISTS `CartItems`(
     `bookId` VARCHAR(135) NOT NULL -- foreign key for bookId
 );
 
+
+-- Friends
+DROP TABLE IF EXISTS `Friends`;
+CREATE TABLE IF NOT EXISTS `Friends`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT NOT NULL, -- foreign key for id from users
+    `friendId` INT NOT NULL -- foreign key for id from users
+    `status` VARCHAR(50) NOT NULL DEFAULT 'PENDING'
+)
+
+-- Posts
+
 -- Reviews
 DROP TABLE IF EXISTS
     `Reviews`;

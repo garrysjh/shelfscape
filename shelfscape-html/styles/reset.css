@@ -33,12 +33,16 @@ body {
     text-decoration: none;
     padding: 8px 12px;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: text-decoration 0.3s, background-size 0.3s;
     text-transform: uppercase;
-    font-weight:bold;
+    font-weight: bold;
+    background-image: linear-gradient(to right, black 0%, black 100%);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
 }
 .navbar .nav-links a:hover {
-    background-color: #555;
+    background-size: 100% 2px;
 }
 .navbar .dropdown {
     position: relative;
@@ -46,7 +50,7 @@ body {
 .navbar .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 140%; /* Adjusted to move the dropdown content slightly lower */
     left: 0;
     background-color: #F8F8ED;
     color: black;
@@ -69,10 +73,15 @@ body {
 .navbar .search-bar {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center align the items */
     gap: 10px;
 }
+
+.search-bar > form {
+    display:flex;
+}
 .navbar .search-bar input {
-    padding: 5px;
+    padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
 }
@@ -100,7 +109,7 @@ body {
     height: auto; 
 }
 
-.login-dropdown-content {
+.navbar .login-dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
@@ -110,7 +119,7 @@ body {
     min-width: 160px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-
+    font-size: 18px;
 }
 
 .logo-homepage {
@@ -120,69 +129,4 @@ body {
 
 .logo-homepage:hover {
     filter: invert(1); /* Invert colors on hover */
-}
-
-
-/* Footer */
-.footer {
-    padding: 2rem;
-    background-color: #EDEDF5;
-    color: #555;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer-logo img {
-    max-width: 100px;
-    margin-bottom: 1rem;
-}
-
-.social-icons {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-icons img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s;
-}
-
-.social-icons img:hover {
-    transform: scale(1.1);
-}
-
-.footer-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.link-column h3 {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.link-column ul {
-    list-style: none;
-}
-
-.link-column li {
-    margin-bottom: 0.5rem;
-}
-
-.link-column a {
-    text-decoration: none;
-    color: #555;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-}
-
-.link-column a:hover {
-    color: #003f5c;
 }

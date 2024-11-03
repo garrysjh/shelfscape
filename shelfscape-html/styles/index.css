@@ -9,7 +9,11 @@
 /* Body Styling */
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #f0f4f8, #d0e4f4);
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -120,6 +124,11 @@ body {
     height: auto;
     border-radius: 5px;
     margin-bottom: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.featured-book img.book-cover:hover {
+    opacity: 0.8;
 }
 
 .featured-book h3 {

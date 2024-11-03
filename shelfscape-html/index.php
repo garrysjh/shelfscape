@@ -44,7 +44,7 @@ if ($bookId) {
 // Retrieve 3 most recent reviews for the book
 $reviews = [];
 if ($bookId) {
-    $stmt = $conn->prepare("SELECT u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3");
+    $stmt = $conn->prepare("SELECT u.id, u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3");
     $stmt->bind_param("i", $bookId);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -83,7 +83,7 @@ $conn->close();
             <div class="nav-links">
                 <a href="books.php">Books</a>
                 <div class="dropdown">
-                    <a href="#">Categories</a>
+                    <a href="#">Categories ▼</a>
                     <div class="dropdown-content">
                         <a href="books.php?category=Fantasy">Fantasy</a>
                         <a href="books.php?category=Fiction">Fiction</a>
@@ -98,8 +98,10 @@ $conn->close();
             </div>
             <div class="search-bar">
                 <form action="books.php" method="GET">
-                    <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
-                    <button type="submit" class="search-button">Search</button>
+                    <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" required/>
+                    <button type="submit" class="search-button">
+                        <img class="search-button-img" src="assets/icons/search.png" alt="Search Icon" />
+                    </button>
                 </form>
             </div>
             <div class="account-icon">
@@ -107,7 +109,7 @@ $conn->close();
                     <div class="dropdown">
                         <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="User Icon" class="usericon"/>
                         <div class="dropdown-content login-dropdown-content">
-                            <a href="profile.php">Profile</a>
+                            <a href="profile.php?id=<?php echo htmlspecialchars($_SESSION['user_id']); ?>">Profile</a>
                             <a href="settings.php">Settings</a>
                             <a href="logout.php">Logout</a>
                         </div>
@@ -153,8 +155,10 @@ $conn->close();
     <div class="featured-book">
         <h2>Book of the Month</h2>
         <br>
-        <img src="<?php echo $bookDetails['coverImg']; ?>" alt="<?php echo $bookDetails['title']; ?> Cover Image" class="book-cover">
-        <h3><?php echo $bookDetails['title']; ?></h3>
+        <a href="book.php?bookId=<?php echo $bookDetails['bookId']; ?>">
+            <img src="<?php echo $bookDetails['coverImg']; ?>" alt="<?php echo $bookDetails['title']; ?> Cover Image" class="book-cover">
+        </a>
+        <h3><a href="book.php?bookId=<?php echo $bookDetails['bookId']; ?>"><?php echo $bookDetails['title']; ?></a></h3>
         <p><strong>Author: </strong><?php echo $bookDetails['author']; ?></p>
     </div>
     <!-- Reviews Section -->
@@ -166,9 +170,15 @@ $conn->close();
                     <h4>Review by <?php echo htmlspecialchars($review['username']); ?></h4>
                     <p><?php echo htmlspecialchars($review['review']); ?></p>
                     <div class="review-meta">
+                    <a href="profile.php?id=<?php echo htmlspecialchars($review['id']); ?>">
                         <img src="<?php echo $review['profilePicture']; ?>" alt="<?php echo $review['username']; ?>" class="reviewer-img">
+                        </a>
                         <div>
-                            <p class="reviewer-name"><?php echo htmlspecialchars($review['username']); ?></p>
+                            <p class="reviewer-name">
+                                <a href="profile.php?id=<?php echo htmlspecialchars($review['id']); ?>">
+                                    <?php echo htmlspecialchars($review['username']); ?>
+                                </a>
+                            </p>
                             <p class="review-date"><?php echo htmlspecialchars($review['date']); ?></p>
                             <p class="review-rating">Rating: <?php echo htmlspecialchars($review['rating']); ?>/5</p>
                         </div>
