@@ -18,13 +18,13 @@ session_start();
         <nav class="navbar">
             <div class="logo">
                 <a href="index.php">
-                    <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
+                    <img class="logo-homepage" src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
                 </a>
             </div>
             <div class="nav-links">
                 <a href="books.php">Books</a>
                 <div class="dropdown">
-                    <a href="#">Categories</a>
+                    <a href="#">Categories ▼</a>
                     <div class="dropdown-content">
                         <a href="books.php?category=Fantasy">Fantasy</a>
                         <a href="books.php?category=Fiction">Fiction</a>
@@ -39,19 +39,31 @@ session_start();
             </div>
             <div class="search-bar">
                 <form action="books.php" method="GET">
-                    <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
-                    <button type="submit" class="search-button">Search</button>
+                    <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" required/>
+                    <button type="submit" class="search-button">
+                        <img class="search-button-img" src="assets/icons/search.png" alt="Search Icon" />
+                    </button>
                 </form>
             </div>
             <div class="account-icon">
-                <a href="login.php">
-                    <img src="assets/icons/user.png" alt="User Icon" />
-                </a>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+                    <div class="dropdown">
+                        <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="User Icon" class="usericon"/>
+                        <div class="dropdown-content login-dropdown-content">
+                            <a href="profile.php?id=<?php echo htmlspecialchars($_SESSION['user_id']); ?>">Profile</a>
+                            <a href="friends.php">Friends</a>
+                            <a href="settings.php">Settings</a>
+                            <a href="logout.php">Logout</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="login.php">
+                        <img src="assets/icons/user.png" alt="User Icon" class="usericon"/>
+                    </a>
+                <?php endif; ?>
             </div>
         </nav>
     </header>
-
-    <!-- Main Content -->
     <main>
         <!-- About Us Section -->
         <section class="we-are">
