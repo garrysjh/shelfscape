@@ -90,7 +90,118 @@ session_start();
       <?php else: ?>
         <p>Please <a href="login.php">log in</a> to donate a book.</p>
       <?php endif; ?>
+
+      <!-- Full-width Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
+                <div class="social-icons">
+                    <a href="#"><img src="assets/icons/X.jfif" alt="X Icon"></a>
+                    <a href="#"><img src="assets/icons/facebook.jfif" alt="Facebook Icon"></a>
+                    <a href="#"><img src="assets/icons/instagram.jfif" alt="Instagram Icon"></a>
+                    <a href="#"><img src="assets/icons/youtube.jfif" alt="YouTube Icon"></a>
+                    <a href="#"><img src="assets/icons/linkedin.jfif" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Career Opportunities</a></li>
+                        <li><a href="#">Working at ShelfScape</a></li>
+                        <li><a href="#">Scholarship</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Read with us</h3>
+                    <ul>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">eBooks</a></li>
+                        <li><a href="#">Magazines</a></li>
+                        <li><a href="#">Newspapers</a></li>
+                        <li><a href="#">Reading Initiatives</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Join Our Mailing List</h3>
+                    <ul>
+                        <li><a href="contact.php">Subscribe Now</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Contact Us!</h3>
+                    <ul>
+                        <li><a href="contact.php">Contact Now</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
     </main>
   </body>
-  <script></script>
+  <style>
+/* Footer */
+.footer {
+    padding: 2rem;
+    background-color: #EDEDF5;
+    color: #555;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-logo img {
+    max-width: 100px;
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.link-column h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.link-column ul {
+    list-style: none;
+}
+
+.link-column li {
+    margin-bottom: 0.5rem;
+}
+
+.link-column a {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.link-column a:hover {
+    color: #003f5c;
+}</style>
 </html>

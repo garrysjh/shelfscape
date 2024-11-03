@@ -1,30 +1,27 @@
 /* Global Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 /* Body Styling */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f5f5f5;
+    background: linear-gradient(135deg, #f0f4f8, #d9eaf2); /* Softer background gradient */
+    color: #333;
 }
 
 /* Full-width Navbar */
 .navbar {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 20px;
-    background-color: #F8F8ED;
+    padding: 20px 40px;
+    background-color: #EDEDF5; /* Slightly warmer tone */
     color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 /* Navbar Elements */
 .logo img {
-    width: 40px;
+    width: 50px;
     height: auto;
 }
 
@@ -35,17 +32,17 @@ body {
 }
 
 .navbar .nav-links a {
-    color: black;
+    color: #555;
     text-decoration: none;
-    padding: 8px 12px;
+    padding: 8px 16px;
     border-radius: 4px;
     font-weight: bold;
     text-transform: uppercase;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar .nav-links a:hover {
-    background-color: #555;
+    background-color: #888;
     color: white;
 }
 
@@ -59,10 +56,12 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #F8F8ED;
+    background-color: #F0F4F8;
     min-width: 160px;
+    border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    padding: 8px 0;
 }
 
 .navbar .dropdown:hover .dropdown-content {
@@ -70,10 +69,11 @@ body {
 }
 
 .dropdown-content a {
-    color: black;
+    color: #333;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    transition: background-color 0.3s;
 }
 
 .dropdown-content a:hover {
@@ -100,7 +100,7 @@ body {
 
 /* Main Content Centering */
 main {
-    width: 80%;
+    width: 85%;
     max-width: 1200px;
     margin: 2rem auto;
 }
@@ -108,57 +108,67 @@ main {
 /* Content Sections */
 .about-us, .we-are {
     background-color: #fff;
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     text-align: center;
-    margin-left: 0; /* Remove any center margin if previously set */
 }
 
+/* About Us Section */
 .we-are-image {
-    width: 400px;
-    height: 400px;
-    background-color: #ccc;
-    border: 2px dashed #aaa;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    margin: 0 auto;
 }
-.we-are .text h2 {
-    text-align: center;
-    margin-left: 0; /* Remove any center margin if previously set */
-    color: #8b0000; /* Optional color for emphasis */
-}
-.we-are .content {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    justify-content: center;
+.we-are h2 {
+    color: #003f5c;
 }
 
-/* Full-width Carousel */
+.we-are .text {
+    margin-top: 1rem;
+}
+
+/* Carousel Section */
 .we-create {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-top: 2rem;
+    width: 90%; /* Make it more centered */
+    max-width: 1000px; /* Define max width to limit expansion */
+    margin: 2rem auto; /* Center horizontally */
     background-color: #fff;
     text-align: center;
-    color: #8b0000; /* Optional color for emphasis */
+    color: #333;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
+/* Carousel Wrapper */
 .carousel-wrapper {
     position: relative;
     overflow: hidden;
     width: 100%;
+    max-width: 800px; /* Set a max width to keep it visually contained */
+    margin: auto; /* Center within the .we-create container */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Carousel Inner */
 .carousel-inner {
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
 
+/* Carousel Items */
 .carousel-item {
-    min-width: 100vw;
+    min-width: 100%;
+    box-sizing: border-box;
 }
 
+/* Carousel Navigation Buttons */
 .carousel-button {
     position: absolute;
     top: 50%;
@@ -169,22 +179,23 @@ main {
     padding: 10px;
     cursor: pointer;
     font-size: 24px;
+    border-radius: 50%;
 }
 
 .carousel-button.prev {
-    left: 10px;
+    left: -40px; /* Position closer to the carousel */
 }
 
 .carousel-button.next {
-    right: 10px;
+    right: -40px;
 }
 
-/* Full-width Footer */
+
+/* Footer */
 .footer {
-    width: 100%;
     padding: 2rem;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
+    background-color: #EDEDF5;
+    color: #555;
 }
 
 .footer-content {
@@ -192,14 +203,6 @@ main {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-}
-
-/* Footer Inner Content */
-.footer-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .footer-logo img {
@@ -209,21 +212,19 @@ main {
 
 .social-icons {
     display: flex;
-    width:min-content;
-    height:min-content;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
-/* Footer social media icons */
-.footer .social-icons img {
-    width: 20px; /* Adjust width to make the icon smaller */
-    height: 20px; /* Adjust height to match width for proportional scaling */
-    transition: transform 0.2s;
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
 }
 
-.footer .social-icons img:hover {
-    transform: scale(1.1); /* Slightly enlarge on hover */
+.social-icons img:hover {
+    transform: scale(1.1);
 }
+
 .footer-links {
     display: flex;
     gap: 2rem;
@@ -245,30 +246,30 @@ main {
 
 .link-column a {
     text-decoration: none;
-    color: #666;
+    color: #555;
     font-size: 0.9rem;
-    transition: color 0.2s;
+    transition: color 0.3s;
 }
 
 .link-column a:hover {
-    color: #000;
+    color: #003f5c;
 }
+
 /* Locate Us Section */
 .locate-us {
-    width: 80%;
-    max-width: 1200px;
-    margin: 2rem auto;
     background-color: #fff;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    max-width: 700px;
+    margin: 2rem auto;
 }
 
 .locate-us iframe {
     width: 100%;
-    max-width: 600px;
     height: 450px;
     border: none;
+    border-radius: 8px;
     margin-top: 1rem;
 }

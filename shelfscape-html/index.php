@@ -121,25 +121,32 @@ $conn->close();
         </nav>
     </header>
 
-    <!-- Full-width Carousel -->
-    <section class="we-create">
-        <br>
-        <div class="carousel-wrapper">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="assets/icons/library_carousel_1.png" alt="Image 1 Description">
-                </div>
-                <div class="carousel-item">
-                  <img src="assets/icons/library_carousel_2.png" alt="Image 2 Description">
-                </div>
-                <div class="carousel-item">
-                  <img src="assets/icons/library_carousel_3.png" alt="Image 3 Description">
-                </div>
+    <!-- Welcome Banner -->
+<section class="welcome-banner">
+    <h1>Welcome to ShelfScape!</h1>
+    <p>Your digital library, anywhere, anytime!</p>
+</section>
+
+<!-- Full-width Carousel -->
+<section class="we-create">
+    <br>
+    <div class="carousel-wrapper">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="assets/icons/banner_1.png" alt="Image 1 Description">
             </div>
-            <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
-            <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
+            <div class="carousel-item">
+                <img src="assets/icons/banner_2.png" alt="Image 2 Description">
+            </div>
+            <div class="carousel-item">
+                <img src="assets/icons/banner_3.png" alt="Image 3 Description">
+            </div>
         </div>
-    </section>
+        <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
+        <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
+    </div>
+</section>
+
 
     <section class="book-review-container">
     <!-- Book Details -->
@@ -248,13 +255,13 @@ $conn->close();
                 <div class="link-column">
                     <h3>Join Our Mailing List</h3>
                     <ul>
-                        <li><a href="contact.html">Subscribe Now</a></li>
+                        <li><a href="contact.php">Subscribe Now</a></li>
                     </ul>
                 </div>
                 <div class="link-column">
                   <h3>Contact Us!</h3>
                   <ul>
-                      <li><a href="contact.html">Contact Now</a></li>
+                      <li><a href="contact.php">Contact Now</a></li>
                   </ul>
               </div>
             </div>
@@ -289,5 +296,28 @@ $conn->close();
 
         showSlide(currentIndex);
     </script>
+
+    <style>
+        /* Welcome Banner Styling */
+.welcome-banner {
+    background-color: #8b0000; /* Dark red background for contrast */
+    color: #ffffff; /* White text for readability */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid #555; /* Optional border for a visual touch */
+}
+
+.welcome-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.welcome-banner p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+
+    </style>
 </body>
 </html>

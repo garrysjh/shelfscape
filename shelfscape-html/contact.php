@@ -11,7 +11,7 @@ session_start();
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"/>
-    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/contact.css" />
   </head>
   <body>
     <header>
@@ -33,9 +33,9 @@ session_start();
               <a href="books.php?category=Horror">Horror</a>
             </div>
           </div>
-          <a href="events.html">Events</a>
-          <a href="aboutus.html">About</a>
-          <a href="donate.html">Donate</a>
+          <a href="events.php">Events</a>
+          <a href="aboutus.php">About</a>
+          <a href="donate.php">Donate</a>
         </div>
         <div class="search-bar">
           <form action="books.php" method="GET">
@@ -132,8 +132,8 @@ session_start();
 							<div class="single-info">
 								<i class="icofont icofont-ui-call"></i>
 								<div class="content">
-									<h3>+(000) 1234 56789</h3>
-									<p>info@company.com</p>
+									<h3>+65 6333 6555</h3>
+									<p>info@shelfscape.com</p>
 								</div>
 							</div>
 						</div>
@@ -143,113 +143,89 @@ session_start();
 							<div class="single-info">
 								<i class="icofont-google-map"></i>
 								<div class="content">
-									<h3>2 Fir e Brigade Road</h3>
-									<p>Chittagonj, Lakshmipur</p>
+									<h3>School of Electrical and Electronic Engineering</h3>
+									<p>50 Nanyang Ave, Singapore 639798</p>
 								</div>
 							</div>
 						</div>
 						<!--/End single-info -->
 						<!-- single-info -->
-						<div class="col-lg-4 col-12 ">
-							<div class="single-info">
-								<i class="icofont icofont-wall-clock"></i>
-								<div class="content">
-									<h3>Mon - Sat: 8am - 5pm</h3>
-									<p>Sunday Closed</p>
-								</div>
-							</div>
-						</div>
+
 						<!--/End single-info -->
 					</div>
 				</div>
 			</div>
 		</section>
 		<!--/ End Contact Us -->
-		
-				<!-- Footer Area -->
-				<footer id="footer" class="footer ">
-					<!-- Footer Top -->
-					<div class="footer-top">
-						<div class="container">
-							<div class="row">
-								<div class="col-lg-3 col-md-6 col-12">
-									<div class="single-footer">
-										<h2>About Us</h2>
-										<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
-										<!-- Social -->
-										<ul class="social">
-											<li><a href="#"><i class="icofont-facebook"></i></a></li>
-											<li><a href="#"><i class="icofont-google-plus"></i></a></li>
-											<li><a href="#"><i class="icofont-twitter"></i></a></li>
-											<li><a href="#"><i class="icofont-vimeo"></i></a></li>
-											<li><a href="#"><i class="icofont-pinterest"></i></a></li>
-										</ul>
-										<!-- End Social -->
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-6 col-12">
-									<div class="single-footer f-link">
-										<h2>Quick Links</h2>
-										<div class="row">
-											<div class="col-lg-6 col-md-6 col-12">
-												<ul>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>	
-												</ul>
-											</div>
-											<div class="col-lg-6 col-md-6 col-12">
-												<ul>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-													<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>	
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-6 col-12">
-									<div class="single-footer">
-										<h2>Open Hours</h2>
-										<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
-										<ul class="time-sidual">
-											<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
-											<li class="day">Saturday <span>9.00-18.30</span></li>
-											<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-6 col-12">
-									<div class="single-footer">
-										<h2>Newsletter</h2>
-										<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
-										<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-											<input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
-												onblur="this.placeholder = 'Your email address'" required="" type="email">
-											<button class="button"><i class="icofont icofont-paper-plane"></i></button>
-										</form>
-									</div>
-								</div>
+		<!-- Opening Hours Section -->
+<div class="opening-hours-section">
+    <h2>Our Opening Hours</h2>
+    <p>We are here to serve you during the following hours:</p>
+    <ul class="opening-hours-list">
+        <li><span>Monday - Friday:</span> 8:00 AM - 8:00 PM</li>
+        <li><span>Saturday:</span> 9:00 AM - 6:30 PM</li>
+        <li><span>Sunday:</span> Closed</li>
+    </ul>
+</div>
+	<!-- Newsletter Section -->
+<div class="newsletter-section">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Stay updated with our latest news and events. Enter your email below to subscribe:</p>
+    <form action="mail/mail.php" method="post" class="newsletter-form">
+        <input type="email" name="email" placeholder="Your Email Address" required>
+        <button type="submit"><i class="icofont-paper-plane"></i> Subscribe</button>
+    </form>
+</div>
 							</div>
 						</div>
 					</div>
-					<!--/ End Footer Top -->
-					<!-- Copyright -->
-					<div class="copyright">
-						<div class="container">
-							<div class="row">
-								<div class="col-lg-12 col-md-12 col-12">
-									<div class="copyright-content">
-										<p>© Copyright 2018  |  All Rights Reserved by <a href="https://www.wpthemesgrid.com" target="_blank">wpthemesgrid.com</a> </p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+			<!-- Footer -->
+		<footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
+                <div class="social-icons">
+                    <a href="#"><img src="assets/icons/X.jfif" alt="X Icon"></a>
+                    <a href="#"><img src="assets/icons/facebook.jfif" alt="Facebook Icon"></a>
+                    <a href="#"><img src="assets/icons/instagram.jfif" alt="Instagram Icon"></a>
+                    <a href="#"><img src="assets/icons/youtube.jfif" alt="YouTube Icon"></a>
+                    <a href="#"><img src="assets/icons/linkedin.jfif" alt="LinkedIn Icon"></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="link-column">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Career Opportunities</a></li>
+                        <li><a href="#">Working at ShelfScape</a></li>
+                        <li><a href="#">Scholarship</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Read with us</h3>
+                    <ul>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">eBooks</a></li>
+                        <li><a href="#">Magazines</a></li>
+                        <li><a href="#">Newspapers</a></li>
+                        <li><a href="#">Reading Initiatives</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Join Our Mailing List</h3>
+                    <ul>
+                        <li><a href="contact.php">Subscribe Now</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h3>Contact Us!</h3>
+                    <ul>
+                        <li><a href="contact.php">Contact Now</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 					<!--/ End Copyright -->
 				</footer>
 				<!--/ End Footer Area -->

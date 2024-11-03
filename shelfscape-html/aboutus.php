@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,31 +52,36 @@
 
     <!-- Main Content -->
     <main>
+        <!-- About Us Section -->
         <section class="we-are">
             <h2>About Us</h2>
-            <p>Hello! ShelfScape was founded by Garry and Josiah, year 4 students from NTU EEE.</p>
+            <p class="intro-text">Hello! ShelfScape was founded by Garry and Josiah, a pair year 4 students from NTU EEE. </p>
+            <br>
             <div class="about-content">
-                <img src="assets/icons/shelfscape_digital_library_img.jpg" alt="We Are ShelfScape Image" class="we-are-image">
+                <img src="assets/icons/shelfscape_img.png" alt="We Are ShelfScape Image" class="we-are-image">
                 <div class="text">
-                    <h2>We Are ShelfScape</h2>
-                    <p>Shelfscape plans to disrupt the conventional library system in place today. The first online digital library, providing free of charge e-books to everyone, anywhere. We have a database of over 10,000,000+ books to choose from. Come and try ShelfScape today!</p>
+                    <br>
+                    <h3>We Are ShelfScape</h3>
+                    <p>Shelfscape is on a mission to disrupt the conventional library system. We’re the first online digital library offering free e-books to everyone, anywhere. With a collection of over 10 million books, there’s something for everyone. Join us and explore ShelfScape today!</p>
                 </div>
             </div>
         </section>
 
         <!-- Full-width Carousel -->
         <section class="we-create">
-            <h2>We Create</h2>
+            <br>
+            <h2>Feel free to see where it all started!</h2>
+            <br>
             <div class="carousel-wrapper">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/icons/library_carousel_1.png" alt="Image 1 Description">
+                        <img src="assets/icons/location_1.png" alt="Library Scene 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/icons/library_carousel_2.png" alt="Image 2 Description">
+                        <img src="assets/icons/location_2.png" alt="Library Scene 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/icons/library_carousel_3.png" alt="Image 3 Description">
+                        <img src="assets/icons/location_3.png" alt="Library Scene 3">
                     </div>
                 </div>
                 <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
@@ -87,7 +95,7 @@
             <p>School of Electrical and Electronic Engineering</p>
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.72281751501!2d103.67816467586454!3d1.3426961986446004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0f75a53bec9d%3A0xd08547c621f6dca6!2sSchool%20of%20Electrical%20and%20Electronic%20Engineering%20(EEE)!5e0!3m2!1sen!2ssg!4v1730082262426!5m2!1sen!2ssg" 
-                width="600" 
+                width="100%" 
                 height="450" 
                 style="border:0;" 
                 allowfullscreen="" 
@@ -132,13 +140,13 @@
                 <div class="link-column">
                     <h3>Join Our Mailing List</h3>
                     <ul>
-                        <li><a href="contact.html">Subscribe Now</a></li>
+                        <li><a href="contact.php">Subscribe Now</a></li>
                     </ul>
                 </div>
                 <div class="link-column">
                     <h3>Contact Us!</h3>
                     <ul>
-                        <li><a href="contact.html">Contact Now</a></li>
+                        <li><a href="contact.php">Contact Now</a></li>
                     </ul>
                 </div>
             </div>
@@ -152,14 +160,7 @@
             const slides = document.querySelectorAll('.carousel-item');
             const totalSlides = slides.length;
 
-            if (index >= totalSlides) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = totalSlides - 1;
-            } else {
-                currentIndex = index;
-            }
-
+            currentIndex = (index + totalSlides) % totalSlides;
             document.querySelector('.carousel-inner').style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 

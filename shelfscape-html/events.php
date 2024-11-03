@@ -125,13 +125,13 @@
                 <div class="link-column">
                     <h3>Join Our Mailing List</h3>
                     <ul>
-                        <li><a href="contact.html">Subscribe Now</a></li>
+                        <li><a href="contact.php">Subscribe Now</a></li>
                     </ul>
                 </div>
                 <div class="link-column">
                     <h3>Contact Us!</h3>
                     <ul>
-                        <li><a href="contact.html">Contact Now</a></li>
+                        <li><a href="contact.php">Contact Now</a></li>
                     </ul>
                 </div>
             </div>
