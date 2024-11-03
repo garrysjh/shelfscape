@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="styles/events.css" />
 </head>
 <body>
-    <!-- Header -->
     <!-- Full-width Header -->
     <header>
         <nav class="navbar">
@@ -34,6 +33,9 @@
                 <a href="events.php">Events</a>
                 <a href="aboutus.php">About</a>
                 <a href="donate.php">Donate</a>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+                    <a href="feed.php">Feed</a>
+                <?php endif; ?>
             </div>
             <div class="search-bar">
                 <form action="books.php" method="GET">
