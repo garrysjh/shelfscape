@@ -34,7 +34,9 @@ $stmt->close();
 
 $conn->close();
 
-// Redirect back to profile page
-header("Location: profile.php?Id=" . $friend_id);
+echo "<script>
+        alert('Friend request sent!');
+        window.location.href = 'profile.php?id=" . $friend_id . "';
+      </script>";
 exit();
 ?>

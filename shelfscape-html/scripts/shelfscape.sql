@@ -31,6 +31,13 @@ INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
 'jackmrbeans@example.com',
 '123124124');
 
+INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+'jane',
+'$2a$12$X2fd3O2DJDUJ.dRwBOXBh.NLmzphZ3vV3qZq0Z7zOOeyGkMLBieqy',
+'jane@gmail.com',
+'124124124'
+);
+
 
 -- CartItems
 -- For reserving existing books
