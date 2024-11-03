@@ -112,3 +112,12 @@ body {
     z-index: 1;
 
 }
+
+.logo-homepage {
+    filter: invert(0); /* Initial state: no inversion */
+    transition: filter 0.2s ease; /* Smooth transition for filter change */
+}
+
+.logo-homepage:hover {
+    filter: invert(1); /* Invert colors on hover */
+}

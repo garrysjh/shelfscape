@@ -77,7 +77,7 @@ $conn->close();
         <nav class="navbar">
             <div class="logo">
                 <a href="index.php">
-                    <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
+                    <img class="logo-homepage" src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
                 </a>
             </div>
             <div class="nav-links">
