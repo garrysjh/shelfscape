@@ -161,7 +161,7 @@ $conn->close();
             <p><strong>ISBN: </strong><?php echo $book['isbn'];?></p>
             <p><strong>Genres: </strong><?php echo $book['genres'] ? join(', ', json_decode($book['genres'], true)) : 'No genre specified'; ?></p>
             <p><?php echo $book['description']; ?></p>
-            <p><strong>Number Available For Reservation: </strong><?php echo $book['quantity']; ?></p>
+            <p><strong>Number Available: </strong><?php echo $book['quantity']; ?></p>
             <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
                 <form action="reserve_book.php" method="POST" onsubmit="handleReserveSubmit(event)">
                     <input type="hidden" name="bookId" value="<?php echo $bookId; ?>">
