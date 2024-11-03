@@ -22,11 +22,7 @@ if ($conn->connect_error) {
 }
 
 // Get user ID from URL parameter or session
-$user_id = isset($_GET['id']) ? $_GET['id'] : null;
-
-if ($user_id === null) {
-    die("User ID is required.");
-}
+$user_id = $_GET['id'] ?? null;
 
 // Retrieve user data
 $sql = "SELECT username, email, phone, profilePicture, timeCreated, lastLogin FROM user WHERE id = ?";
@@ -42,7 +38,64 @@ if ($result->num_rows > 0) {
 } else {
     $userData = null;
 }
+
+// Check if the current user and the profile user are friends
+$profile_id = $user_id;
+$current_user_id = $_SESSION['user_id'];
+$friend_status_sql = "
+SELECT 
+    *
+FROM 
+    friends
+WHERE 
+    ((userId = ? AND friendId = ?) 
+    OR (userId = ? AND friendId = ?))
+    AND status = 'CONFIRMED'";
+$stmt = $conn->prepare($friend_status_sql);
+$stmt->bind_param("iiii", $current_user_id, $profile_id, $profile_id, $current_user_id);
+$stmt->execute();
+$friend_status_result = $stmt->get_result();
+$is_friend = $friend_status_result->num_rows > 0;
+
+// Check if a friend request is pending
+$pending_status_sql = "
+SELECT 
+    *
+FROM 
+    friends
+WHERE 
+    ((userId = ? AND friendId = ?) 
+    OR (userId = ? AND friendId = ?))
+    AND status = 'PENDING'";
+$stmt = $conn->prepare($pending_status_sql);
+$stmt->bind_param("iiii", $current_user_id, $profile_id, $profile_id, $current_user_id);
+$stmt->execute();
+$pending_status_result = $stmt->get_result();
+$is_pending = $pending_status_result->num_rows > 0;
+
+// Retrieve the 3 most recent reviews by the current user
+$reviews_sql = "
+SELECT 
+    b.bookId, b.title, r.review, r.date, b.coverImg, r.rating, r.recommended
+FROM 
+    reviews r
+JOIN 
+    books b using(bookId)
+WHERE 
+    userId = ?
+ORDER BY 
+    r.date DESC 
+LIMIT 3";
+$stmt = $conn->prepare($reviews_sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$reviews_result = $stmt->get_result();
+$reviews = [];
+while ($row = $reviews_result->fetch_assoc()) {
+    $reviews[] = $row;
+}
 $stmt->close();
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -52,10 +105,6 @@ $conn->close();
     <meta charset="utf-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/profile.css"/>
 </head>
@@ -109,17 +158,49 @@ $conn->close();
         </nav>
     </header>
     <div class="profile-data">
-    <h1>Profile Information</h1>
-    <?php if ($userData): ?>
-        <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100"><br>
-        <p><strong>Username:</strong> <?php echo htmlspecialchars($userData['username']); ?></p>
-        <p><strong>Email:</strong> <?php echo htmlspecialchars($userData['email']); ?></p>
-        <p><strong>Phone:</strong> <?php echo htmlspecialchars($userData['phone']); ?></p>
-        <p><strong>Account Created:</strong> <?php echo htmlspecialchars($userData['timeCreated']); ?></p>
-        <p><strong>Last Login:</strong> <?php echo htmlspecialchars($userData['lastLogin']); ?></p>
-    <?php else: ?>
-        <p>User data not found.</p>
-    <?php endif; ?>
+        <h1>Profile Information</h1>
+        <?php if ($userData): ?>
+            <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100"><br>
+            <p><strong>Username:</strong> <?php echo htmlspecialchars($userData['username']); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($userData['email']); ?></p>
+            <p><strong>Phone:</strong> <?php echo htmlspecialchars($userData['phone']); ?></p>
+            <p><strong>Account Created:</strong> <?php echo htmlspecialchars($userData['timeCreated']); ?></p>
+            <p><strong>Last Login:</strong> <?php echo htmlspecialchars($userData['lastLogin']); ?></p>
+            <?php if ((int)$_SESSION['user_id'] !== (int)$user_id): ?>
+                <?php if ($is_friend): ?>
+                    <p class="friends"><strong>Status:</strong> Friends</p>
+                <?php elseif ($is_pending): ?>
+                    <p class="pending"><strong>Status:</strong> Pending</p>
+                <?php else: ?>
+                    <form method="POST" action="send_friend_request.php">
+                        <input type="hidden" name="friend_id" value="<?php echo htmlspecialchars($profile_id); ?>">
+                        <button type="submit">Send Friend Request</button>
+                    </form>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php else: ?>
+            <p>User data not found.</p>
+        <?php endif; ?>
+        <h1>Recent Reviews</h1>
+        <?php if (!empty($reviews)): ?>
+                <?php foreach ($reviews as $review): ?>
+                    <div class="review">
+                        <div style="float: left; margin-right: 10px;">
+                            <img src="<?php echo htmlspecialchars($review['coverImg']); ?>" alt="Book Cover" width="50">
+                            <p><strong><?php echo htmlspecialchars($review['title']); ?></strong></p>
+                        </div>
+                        <div>
+                            <p><strong>Review:</strong> <?php echo htmlspecialchars($review['review']); ?></p>
+                            <p><strong>Date:</strong> <?php echo htmlspecialchars($review['date']); ?></p>
+                            <p><strong>Rating:</strong> <?php echo htmlspecialchars($review['rating']); ?> / 5</p>
+                            <p><strong>Recommended:</strong> <?php echo $review['recommended'] ? 'Yes' : 'No'; ?></p>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                <?php endforeach; ?>
+        <?php else: ?>
+            <p>No reviews found.</p>
+        <?php endif; ?>
     </div>
 </body>
 </html>
