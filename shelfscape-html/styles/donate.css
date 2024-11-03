@@ -1,46 +1,73 @@
+/* Donate Page Container Styling */
 .donate-container {
-    margin-left: 10vw;
-    margin-right: 10vw;
-    margin-top: 5vh;
-    margin-bottom: 20vh;
-    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    margin: 2rem auto;
     background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-label {
-    display: block;
-    margin-top: 5vh;
-    margin-right: 5vh;
-    font-weight: bold;
+.donate-container h2 {
+    font-size: 2rem;
     color: #333;
+    margin-bottom: 1.5rem;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="number"],
-textarea,
-select {
+.donate-container form label {
+    display: block;
+    font-weight: bold;
+    margin: 0.5rem 0 0.25rem;
+    color: #555;
+}
+
+.donate-container form input[type="text"],
+.donate-container form textarea,
+.donate-container form select {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
     box-sizing: border-box;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+.donate-container form textarea {
+    resize: vertical;
+    height: 100px;
 }
 
-button:hover {
-    background-color: #45a049;
+.donate-container button {
+    padding: 0.75rem 1.5rem;
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.donate-container button:hover {
+    background-color: #721e1e;
+}
+
+/* Login Prompt Styling */
+.donate-container p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.donate-container p a {
+    color: #8b0000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.donate-container p a:hover {
+    text-decoration: underline;
 }
