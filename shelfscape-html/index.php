@@ -59,7 +59,7 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Shelfscape</title>
+    <title>Shelfscape: Homepage</title>
     <meta charset="utf-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

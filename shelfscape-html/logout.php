@@ -7,7 +7,7 @@ session_destroy();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Logout</title>
+    <title>Shelfscape: Logout</title>
     <script type="text/javascript">
         alert('You have been logged out.');
         window.location.href = 'login.php';

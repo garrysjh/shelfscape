@@ -86,7 +86,7 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Friends</title>
+    <title>Shelfscape: Friends</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/friends.css"/>
