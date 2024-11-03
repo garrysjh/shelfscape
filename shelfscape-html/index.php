@@ -83,7 +83,7 @@ $conn->close();
             <div class="nav-links">
                 <a href="books.php">Books</a>
                 <div class="dropdown">
-                    <a href="#">Categories</a>
+                    <a href="#">Categories ▼</a>
                     <div class="dropdown-content">
                         <a href="books.php?category=Fantasy">Fantasy</a>
                         <a href="books.php?category=Fiction">Fiction</a>
@@ -99,7 +99,9 @@ $conn->close();
             <div class="search-bar">
                 <form action="books.php" method="GET">
                     <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
-                    <button type="submit" class="search-button">Search</button>
+                    <button type="submit" class="search-button">
+                        <img class="search-button-img" src="assets/icons/search.png" alt="Search Icon" />
+                    </button>
                 </form>
             </div>
             <div class="account-icon">
