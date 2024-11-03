@@ -28,7 +28,7 @@ $result = $stmt->get_result();
 $book = $result->fetch_assoc();
 
 // Retrieve 3 most recent reviews for the book
-$sql = "SELECT u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3";
+$sql = "SELECT u.id, u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $bookId);
 $stmt->execute();
@@ -128,8 +128,13 @@ $conn->close();
                 <div class="review">
                     <div class="review-title">
                       <div class="review-profile">
+                        <a href="profile.php?id=<?php echo $review['id']; ?>">
                       <img src="<?php echo $review['profilePicture']; ?>" alt="User Icon" class="otherusericon"/>
+                      </a>
+                      <a href="profile.php?id=<?php echo $review['id']; ?>">
                       <p><strong><?php echo htmlspecialchars($review['username']); ?></strong></p>
+                      </a>
+            
             </div>
                       <p class="review-date"><em><?php echo htmlspecialchars($review['date']); ?></em></p>
                     </div>

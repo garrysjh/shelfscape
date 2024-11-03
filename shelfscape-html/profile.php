@@ -21,8 +21,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve current user data
-$user_id = $_SESSION['user_id'];
+// Get user ID from URL parameter or session
+$user_id = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($user_id === null) {
+    die("User ID is required.");
+}
+
+// Retrieve user data
 $sql = "SELECT username, email, phone, profilePicture, timeCreated, lastLogin FROM user WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -31,7 +37,7 @@ $result = $stmt->get_result();
 
 $userData = [];
 if ($result->num_rows > 0) {
-    // Store data of the current user in an array
+    // Store data of the user in an array
     $userData = $result->fetch_assoc();
 } else {
     $userData = null;
@@ -41,7 +47,7 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>Shelfscape</title>
     <meta charset="utf-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,7 +58,7 @@ $conn->close();
     />
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/profile.css"/>
-  </head>
+</head>
 <body>
     <header>
         <nav class="navbar">
@@ -103,7 +109,7 @@ $conn->close();
         </nav>
     </header>
     <div class="profile-data">
-    <h1>Your Profile Information</h1>
+    <h1>Profile Information</h1>
     <?php if ($userData): ?>
         <img src="<?php echo htmlspecialchars($userData['profilePicture']); ?>" alt="Profile Picture" width="100"><br>
         <p><strong>Username:</strong> <?php echo htmlspecialchars($userData['username']); ?></p>
