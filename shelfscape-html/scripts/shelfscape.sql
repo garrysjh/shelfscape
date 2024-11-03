@@ -159,7 +159,7 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`dat
     '1885.Pride_and_Prejudice',
     4,
     'For some reasoin, this book is a brilliant work by Jane Austen. I had to read this for my literature class and I was not disappointed. I would highly recommend this book to anyone who is looking for a good read. ', 
-    true
+    true,
     '2023-06-03 12:00:00'
 );
 INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`date`) VALUES(
@@ -167,7 +167,7 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`dat
     '1885.Pride_and_Prejudice',
     3,
     'Pride and Prejudice by Jane Austen is a brilliantly crafted novel that expertly navigates the complexities of love, class, and social expectations in early 19th-century England. With its sharp wit and memorable characters, particularly the spirited Elizabeth Bennet and the enigmatic Mr. Darcy, the story remains an enduring exploration of personal growth and the transformative power of understanding.',
-    true
+    true,
     '2021-06-03 12:00:00'
 );
 INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`, `date`) VALUES(
@@ -175,7 +175,7 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`, `da
     '5297.The_Picture_of_Dorian_Gray',
     5,
     'The Picture of Dorian Gray by Oscar Wilde is a captivating exploration of vanity and moral corruption, brilliantly illustrated through Dorians haunting portrait that reflects the consequences of his hedonistic lifestyle. Wildes exquisite prose and profound insights into the nature of beauty and ethics make this novel an enduring classic that continues to resonate with readers today.',
-    true
+    true,
     '2021-06-03 12:00:00'
 );
 INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`date`) VALUES(
@@ -183,7 +183,7 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`dat
     '5297.The_Picture_of_Dorian_Gray',
     1,
     'While The Picture of Dorian Gray offers an interesting premise, its self-indulgent exploration of superficiality and moral decay left me feeling exhausted and unsatisfied. Wildes verbose writing style often detracts from the narrative, making it a tedious read that struggles to engage on any meaningful level.',
-    false
+    false,
     '2021-06-02 12:00:00'
 );
 INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`, `date`) VALUES(
@@ -199,7 +199,7 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`, `da
 DROP TABLE IF EXISTS
     `Books`;
 CREATE TABLE IF NOT EXISTS `Books`(
-    bookId VARCHAR(135) NOT NULL PRIMARY KEY DEFAULT title,
+    bookId VARCHAR(135) NOT NULL PRIMARY KEY DEFAULT REPLACE(title, ' ', ''),
     title VARCHAR(251) NOT NULL,
     series VARCHAR(93),
     author VARCHAR(381) NOT NULL,
