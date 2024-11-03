@@ -139,6 +139,7 @@ $conn->close();
                         <div class="dropdown-content login-dropdown-content">
                             <a href="profile.php?id=<?php echo htmlspecialchars($_SESSION['user_id']); ?>">Profile</a>
                             <a href="friends.php">Friends</a>
+                            <a href="cart.php">Cart</a>
                             <a href="settings.php">Settings</a>
                             <a href="logout.php">Logout</a>
                         </div>
@@ -155,13 +156,24 @@ $conn->close();
     <div class="book-intro">
         <img src="<?php echo $book['coverImg']; ?>" alt="<?php echo $book['title']; ?> Cover Image">
         <div class="book-description">
-        <h1><?php echo $book['title']; ?></h1>
-        <p><strong>Author: </strong><?php echo $book['author'];?></p>
-        <p><strong>ISBN: </strong><?php echo $book['isbn'];?></p>
-        <p><strong>Genres: </strong><?php echo $book['genres'] ? join(', ', json_decode($book['genres'], true)) : 'No genre specified'; ?></p>
-        <p><?php echo $book['description']; ?></p>
+            <h1><?php echo $book['title']; ?></h1>
+            <p><strong>Author: </strong><?php echo $book['author'];?></p>
+            <p><strong>ISBN: </strong><?php echo $book['isbn'];?></p>
+            <p><strong>Genres: </strong><?php echo $book['genres'] ? join(', ', json_decode($book['genres'], true)) : 'No genre specified'; ?></p>
+            <p><?php echo $book['description']; ?></p>
+            <p><strong>Number Available For Reservation: </strong><?php echo $book['quantity']; ?></p>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
+                <form action="reserve_book.php" method="POST" onsubmit="handleReserveSubmit(event)">
+                    <input type="hidden" name="bookId" value="<?php echo $bookId; ?>">
+                    <input type="hidden" name="userId" value="<?php echo $_SESSION['user_id']; ?>">
+                    <button class="reserve-button" type="submit">Reserve Book</button>
+                </form>
+            <?php else: ?>
+                <p>Please <a href="login.php">log in</a> to reserve this book.</p>
+            <?php endif; ?>
         </div>
-
+    </div>
+    
 </div>
     </main>
     <section class="review-section">
@@ -278,4 +290,39 @@ $conn->close();
         </div>
     </footer>
 </body>
+    <script>
+    function handleReserveSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const quantity = <?php echo $book['quantity']; ?>;
+
+        if (quantity <= 0) {
+            alert('No books available to be reserved.');
+            return false;
+        }
+
+        fetch('reserve_book.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data=> {
+            console.log(data)
+            if (data.success) {
+                alert('Book reserved successfully!');
+                window.location.href = data.redirect;
+            } else if (data.error === 'duplicate_entry') {
+                alert('This book is already being reserved by someone else.');
+            } else {
+                alert('This book is already being reserved by someone else. Try again later.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Someone else has already reserved this book. Try again later!');
+        });
+        return false;
+    }
+    </script>
 </html>
