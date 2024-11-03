@@ -148,93 +148,48 @@ $conn->close();
     </header>
     <main class="main-container">
         <h1>Friends</h1>
+        
+        <!-- Pending Friends Section -->
         <div class="pending-friends">
             <h2>Pending Friends</h2>
             <div class="pending-friends-container">
-            <?php if (!empty($pending_friends)): ?>
-
+                <?php if (!empty($pending_friends)): ?>
                     <?php foreach ($pending_friends as $pending_friend): ?>
-                        <div class="pending-friend">    
+                        <div class="friend-card">
                             <a href="profile.php?id=<?php echo htmlspecialchars($pending_friend['id']); ?>" class="friend-link">
                                 <img src="<?php echo htmlspecialchars($pending_friend['profilePicture']); ?>" alt="Profile Picture" class="profile-pic">
                                 <span class="friend-username"><?php echo htmlspecialchars($pending_friend['username']); ?></span>
                             </a>
-                            
-                            <form method="POST" style="display:inline;">
+                            <form method="POST">
                                 <input type="hidden" name="friend_id" value="<?php echo htmlspecialchars($pending_friend['id']); ?>">
-                                <button type="submit" name="confirm_friend">Confirm</button>
+                                <button type="submit" name="confirm_friend" class="confirm-button">Confirm</button>
                             </form>
                         </div>
                     <?php endforeach; ?>
-                    </div>
-            <?php else: ?>
-                <p>No pending friends.</p>
-            <?php endif; ?>
+                <?php else: ?>
+                    <p>No pending friends.</p>
+                <?php endif; ?>
+            </div>
         </div>
 
+        <!-- Confirmed Friends Section -->
+        <div class="confirmed-friends">
             <h2>Confirmed Friends</h2>
-            <div class="pending-friends-container">
-            <?php if (!empty($confirmed_friends)): ?>
+            <div class="confirmed-friends-container">
+                <?php if (!empty($confirmed_friends)): ?>
                     <?php foreach ($confirmed_friends as $confirmed_friend): ?>
-                        <div class="pending-friends">
-                        <a href="profile.php?id=<?php echo htmlspecialchars($confirmed_friend['id']); ?>" class="friend-link">
-                            <img src="<?php echo htmlspecialchars($confirmed_friend['profilePicture']); ?>" alt="Profile Picture" class="profile-pic">
-                            <span class="friend-username"><?php echo htmlspecialchars($confirmed_friend['username']); ?></span>
-                        </a>
+                        <div class="friend-card">
+                            <a href="profile.php?id=<?php echo htmlspecialchars($confirmed_friend['id']); ?>" class="friend-link">
+                                <img src="<?php echo htmlspecialchars($confirmed_friend['profilePicture']); ?>" alt="Profile Picture" class="profile-pic">
+                                <span class="friend-username"><?php echo htmlspecialchars($confirmed_friend['username']); ?></span>
+                            </a>
                         </div>
                     <?php endforeach; ?>
-                    </div>
-            <?php else: ?>
-                <p>No confirmed friends.</p>
-            <?php endif; ?>
+                <?php else: ?>
+                    <p>No confirmed friends.</p>
+                <?php endif; ?>
+            </div>
         </div>
     </main>
-             <!-- Footer -->
-             <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
-                <div class="social-icons">
-                    <a href="#"><img src="assets/icons/X.jfif" alt="X Icon"></a>
-                    <a href="#"><img src="assets/icons/facebook.jfif" alt="Facebook Icon"></a>
-                    <a href="#"><img src="assets/icons/instagram.jfif" alt="Instagram Icon"></a>
-                    <a href="#"><img src="assets/icons/youtube.jfif" alt="YouTube Icon"></a>
-                    <a href="#"><img src="assets/icons/linkedin.jfif" alt="LinkedIn Icon"></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <div class="link-column">
-                    <h3>Careers</h3>
-                    <ul>
-                        <li><a href="#">Career Opportunities</a></li>
-                        <li><a href="#">Working at ShelfScape</a></li>
-                        <li><a href="#">Scholarship</a></li>
-                    </ul>
-                </div>
-                <div class="link-column">
-                    <h3>Read with us</h3>
-                    <ul>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">eBooks</a></li>
-                        <li><a href="#">Magazines</a></li>
-                        <li><a href="#">Newspapers</a></li>
-                        <li><a href="#">Reading Initiatives</a></li>
-                    </ul>
-                </div>
-                <div class="link-column">
-                    <h3>Join Our Mailing List</h3>
-                    <ul>
-                        <li><a href="contact.php">Subscribe Now</a></li>
-                    </ul>
-                </div>
-                <div class="link-column">
-                    <h3>Contact Us!</h3>
-                    <ul>
-                        <li><a href="contact.php">Contact Now</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
