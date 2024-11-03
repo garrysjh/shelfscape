@@ -78,22 +78,16 @@ body {
     background-color: #a00000;
 }
 
-/* Status Styling */
-.status-friends {
-    color: green;
+/* Status Styling with Improved Specificity */
+.profile-data .status-friends {
+    color: green !important;
     font-weight: bold;
     text-align: center;
+    margin: 1rem 0;
 }
 
-.status-pending {
-    color: red;
-    font-weight: bold;
-    text-align: center;
-}
-
-.friends, 
-.pending {
-    color: #8b0000;
+.profile-data .status-pending {
+    color: red !important;
     font-weight: bold;
     text-align: center;
     margin: 1rem 0;
