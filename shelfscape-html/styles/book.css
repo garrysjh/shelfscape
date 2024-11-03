@@ -118,3 +118,36 @@ h2 {
     height: 150px; /* Make textarea bigger */
     resize: vertical; /* Allow vertical resizing */
 }
+
+.all-reviews {
+    margin-top: 10vh;
+    text-align: center;
+    position: relative; /* Required for the ::after pseudo-element */
+    display: inline-block; /* Ensure the underline is only as wide as the text */
+}
+
+.all-reviews::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    background: black;
+    transition: width 0.3s;
+    bottom: -2px; /* Position the underline just below the text */
+    left: 50%; /* Start the underline from the center */
+    transform: translateX(-50%); /* Center the underline */
+}
+
+.all-reviews:hover::after {
+    width: 15%; /* Expand the underline to full width of the text on hover */
+}
+
+
+a > img {
+    transition: filter 0.3s ease;
+}
+
+a > img:hover {
+    filter: brightness(0.7); /* Darken the image on hover */
+}

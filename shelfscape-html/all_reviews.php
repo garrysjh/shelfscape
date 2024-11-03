@@ -1,6 +1,7 @@
 <?php
 session_start();
-// Database configuration
+
+// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,33 +15,49 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$defaultBookId = "10210.Jane_Eyre"; // Change this to your desired book ID
-$bookId = isset($_GET['id']) ? $_GET['id'] : $defaultBookId;
+// Get book ID from URL parameter
+$bookId = isset($_GET['bookId']) ? $_GET['bookId'] : 0;
 
+// Get filter parameters
+$ratingFilter = isset($_GET['rating']) ? $_GET['rating'] : '';
+$recommendedFilter = isset($_GET['recommended']) ? $_GET['recommended'] : '';
 
-// Retrieve book details
-$sql = "SELECT title, author, coverImg, isbn, description, genres FROM Books WHERE bookId = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $bookId);
+// Build the SQL query with filters
+$reviews_sql = "
+SELECT u.username, u.profilePicture, r.userId, r.review, r.rating, r.date, r.recommended
+FROM reviews r 
+JOIN user u ON r.userId = u.id 
+WHERE r.bookId = ?";
+
+if ($ratingFilter !== '') {
+    $reviews_sql .= " AND r.rating = ?";
+}
+if ($recommendedFilter !== '') {
+    $reviews_sql .= " AND r.recommended = ?";
+}
+
+$reviews_sql .= " ORDER BY r.date DESC";
+
+$stmt = $conn->prepare($reviews_sql);
+
+if ($ratingFilter !== '' && $recommendedFilter !== '') {
+    $stmt->bind_param("iii", $bookId, $ratingFilter, $recommendedFilter);
+} elseif ($ratingFilter !== '') {
+    $stmt->bind_param("ii", $bookId, $ratingFilter);
+} elseif ($recommendedFilter !== '') {
+    $stmt->bind_param("ii", $bookId, $recommendedFilter);
+} else {
+    $stmt->bind_param("i", $bookId);
+}
+
 $stmt->execute();
-$result = $stmt->get_result();
-
-$book = $result->fetch_assoc();
-
-// Retrieve 3 most recent reviews for the book
-$sql = "SELECT u.id, u.username, u.profilePicture, r.rating, r.review, r.date, r.recommended FROM reviews r LEFT JOIN user u on r.userId = u.id WHERE bookId = ? ORDER BY r.date DESC LIMIT 3";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $bookId);
-$stmt->execute();
-$result = $stmt->get_result();
-
+$reviews_result = $stmt->get_result();
 $reviews = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $reviews[] = $row;
-    }
+while ($row = $reviews_result->fetch_assoc()) {
+    $reviews[] = $row;
 }
 $stmt->close();
+
 $conn->close();
 ?>
 
@@ -49,15 +66,9 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <title><?php echo $book['title']; ?></title>
+    <title>All Reviews</title>
     <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/book.css">
+    <link rel="stylesheet" href="styles/reviews.css">
 </head>
 <body>
 <!-- Full-width Header -->
@@ -115,82 +126,56 @@ $conn->close();
         </nav>
     </header>
     <main>
-    <div class="book-intro">
-        <img src="<?php echo $book['coverImg']; ?>" alt="<?php echo $book['title']; ?> Cover Image">
-        <div class="book-description">
-        <h1><?php echo $book['title']; ?></h1>
-        <p><strong>Author: </strong><?php echo $book['author'];?></p>
-        <p><strong>ISBN: </strong><?php echo $book['isbn'];?></p>
-        <p><strong>Genres: </strong><?php echo $book['genres'] ? join(', ', json_decode($book['genres'], true)) : 'No genre specified'; ?></p>
-        <p><?php echo $book['description']; ?></p>
-        </div>
-</div>
-    </main>
-    <section class="review-section">
-      <div class="recent-reviews">
-        <h2>Recent Reviews</h2>
-        <?php if (!empty($reviews)): ?>
-            <?php foreach ($reviews as $review): ?>
-                <div class="review">
-                    <div class="review-title">
-                      <div class="review-profile">
-                        <a href="profile.php?id=<?php echo $review['id']; ?>">
-                      <img src="<?php echo $review['profilePicture']; ?>" alt="User Icon" class="otherusericon"/>
-                      </a>
-                      <a href="profile.php?id=<?php echo $review['id']; ?>">
-                      <p><strong><?php echo htmlspecialchars($review['username']); ?></strong></p>
-                      </a>
-            
-            </div>
-                      <p class="review-date"><em><?php echo htmlspecialchars($review['date']); ?></em></p>
+        <div class="filter">
+        <a href="book.php?id=<?php echo $bookId; ?>">Back to Book</a>
+        <h1>All Reviews</h1>
+        <form method="GET" action="all_reviews.php">
+            <input type="hidden" name="bookId" value="<?php echo htmlspecialchars($bookId); ?>">
+            <label for="rating">Rating:</label>
+            <select name="rating" id="rating">
+                <option value="">All</option>
+                <option value="1" <?php echo $ratingFilter === '1' ? 'selected' : ''; ?>>1</option>
+                <option value="2" <?php echo $ratingFilter === '2' ? 'selected' : ''; ?>>2</option>
+                <option value="3" <?php echo $ratingFilter === '3' ? 'selected' : ''; ?>>3</option>
+                <option value="4" <?php echo $ratingFilter === '4' ? 'selected' : ''; ?>>4</option>
+                <option value="5" <?php echo $ratingFilter === '5' ? 'selected' : ''; ?>>5</option>
+            </select>
+            <label for="recommended">Recommended:</label>
+            <select name="recommended" id="recommended">
+                <option value="">All</option>
+                <option value="1" <?php echo $recommendedFilter === '1' ? 'selected' : ''; ?>>Yes</option>
+                <option value="0" <?php echo $recommendedFilter === '0' ? 'selected' : ''; ?>>No</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+                </div>
+        <div class="all-reviews">
+            <?php if (!empty($reviews)): ?>
+                <?php foreach ($reviews as $review): ?>
+                    <div class="review">
+                        <div class="review-title">
+                            <div class="review-profile">
+                                <a href="profile.php?id=<?php echo $review['userId']; ?>">
+                                    <img src="<?php echo $review['profilePicture']; ?>" alt="User Icon" class="otherusericon"/>
+                                </a>
+                                <a href="profile.php?id=<?php echo $review['userId']; ?>">
+                                    <p><strong><?php echo htmlspecialchars($review['username']); ?></strong></p>
+                                </a>
+                            </div>
+                            <p class="review-date"><em><?php echo htmlspecialchars($review['date']); ?></em></p>
+                        </div>
+                        <p class="review-rating"><strong>Rating given: </strong><?php echo htmlspecialchars($review['rating']); ?>/5</p>
+                        <p class="review-content"><strong>Review: </strong></br></p>
+                        <p class="review-content"><?php echo htmlspecialchars($review['review']); ?></p>
+                        <p class="review-recommended"><strong>Recommended: </strong><?php echo $review['recommended'] ? 'Yes' : 'No'; ?></p>
                     </div>
-                    <p class="review-rating"><strong>Rating given: </strong><?php echo htmlspecialchars($review['rating']); ?>/5</p>
-                    <p class="review-content"><strong>Review: </strong></br></p>
-                    <p class="review-content"><?php echo htmlspecialchars($review['review']); ?></p>
-                </div>
-            <?php endforeach; ?>
-            <a href="all_reviews.php?bookId=<?php echo $bookId; ?>" class="all-reviews">View all reviews</a>
-        <?php else: ?>
-            <p class="review-content" >No reviews found.</p>
-        <?php endif; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="review-content">No reviews found.</p>
+            <?php endif; ?>
         </div>
-    </section>
-    <section class="write-review-section">
-          <div class="write-review-div">
-            <h2>Leave a Review</h2>
-            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
-              <form action="submit_review.php" method="POST">
-                <input type="hidden" name="bookId" value="<?php echo $bookId; ?>">
-                <input type="hidden" name="userId" value="<?php echo $_SESSION['user_id']; ?>">
-                <div class="form-group">
-                  <label for="rating">Rating (1-5):</label>
-                  <select name="rating" id="rating" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="recommended">Recommended:</label>
-                  <select name="recommended" id="recommended" required>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="review">Review:</label>
-                  <textarea name="review" id="review" rows="4" placeholder="Leave your review below!" required></textarea>
-                </div>
-                <button type="submit">Submit Review</button>
-              </form>
-          <?php else: ?>
-            <p>Please <a href="login.php">log in</a> to leave a review.</p>
-          <?php endif; ?>
-        </div>
-        </section>
-         <!-- Footer -->
+
+        <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -237,5 +222,6 @@ $conn->close();
             </div>
         </div>
     </footer>
+    </main>
 </body>
 </html>
