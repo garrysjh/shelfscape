@@ -19,24 +19,44 @@ INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
     'admin@admin.com',
     '999');
 
-INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+INSERT INTO `User`(`username`, `password`, `email`, `phone`, `profilePicture`) VALUES(
 'johndoe',
 'password123',
 'johndoe@example.com',
-'1234567890');
+'1234567890',
+'assets/man.png');
 
-INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+INSERT INTO `User`(`username`, `password`, `email`, `phone`, `profilePicture`) VALUES(
 'jackmrbean',
 'password123',
 'jackmrbeans@example.com',
-'123124124');
+'123124124',
+'assets/ruffled_man.png');
 
-INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+INSERT INTO `User`(`username`, `password`, `email`, `phone`, `profilePicture`) VALUES(
 'jane',
 '$2a$12$X2fd3O2DJDUJ.dRwBOXBh.NLmzphZ3vV3qZq0Z7zOOeyGkMLBieqy',
 'jane@gmail.com',
-'124124124'
+'124124124',
+'assets/woman.png'
 );
+
+INSERT INTO `User`(`username`, `password`, `email`, `phone`, `profilePicture`) VALUES(
+'ihatecoding',
+'password123',
+'ihatecoding@email.com',
+'95484234',
+'assets/glasses_man.png'
+);
+
+INSERT INTO `User`(`username`, `password`, `email`, `phone`, `profilePicture`) VALUES(
+'mrmoustache',
+'password123',
+'mrmoustache@email.com',
+'9548423411',
+'assets/moustache.png'
+);
+
 
 
 -- CartItems
@@ -69,6 +89,24 @@ INSERT INTO `Friends`(`userId`, `friendId`, `status`) VALUES(
     1,
     'PENDING'
 );
+INSERT INTO `Friends`(`userId`, `friendId`, `status`) VALUES(
+    4,
+    1,
+    'CONFIRMED'
+);
+
+INSERT INTO `Friends`(`userId`, `friendId`, `status`) VALUES(
+    2,
+    3,
+    'CONFIRMED'
+);
+
+INSERT INTO `Friends`(`userId`, `friendId`, `status`) VALUES(
+    4,
+    5,
+    'CONFIRMED'
+);
+
 
 -- Posts
 
@@ -98,6 +136,63 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VAL
     5,
     'This book is a work of art. I really enjoyed the character Jane. Even though some of the charactersin this book got pretty annoying, I still thought this was a pretty beautiful experience. Would highly recommend this work of art to anyone seeking a very kind read! ',
     true
+);
+
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VALUES(
+    4,
+    '11127.The_Chronicles_of_Narnia',
+    5,
+    'C.S. Lewises Narnia is a captivating tale of adventure, courage, and redemption set in the magical land of Narnia. With its rich symbolism and memorable characters like the noble Aslan and the treacherous White Witch, the story explores profound themes of good versus evil and the power of forgiveness. This timeless classic resonates with readers of all ages, inviting them to believe in the extraordinary and stand against injustice.',
+    true
+);
+
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VALUES(
+    3,
+    '11870085-the-fault-in-our-stars',
+    4,
+    'The Fault in Our Stars by John Green is a poignant and beautifully written exploration of love and loss, centered around two teenagers navigating life and illness. With its heartfelt dialogue and memorable characters, the novel captures the bittersweet essence of fleeting moments and the profound impact of human connections.',
+    true
+);
+
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`date`) VALUES(
+    5,
+    '1885.Pride_and_Prejudice',
+    4,
+    'For some reasoin, this book is a brilliant work by Jane Austen. I had to read this for my literature class and I was not disappointed. I would highly recommend this book to anyone who is looking for a good read. ', 
+    true
+    '2023-06-03 12:00:00'
+);
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`date`) VALUES(
+    1,
+    '1885.Pride_and_Prejudice',
+    3,
+    'Pride and Prejudice by Jane Austen is a brilliantly crafted novel that expertly navigates the complexities of love, class, and social expectations in early 19th-century England. With its sharp wit and memorable characters, particularly the spirited Elizabeth Bennet and the enigmatic Mr. Darcy, the story remains an enduring exploration of personal growth and the transformative power of understanding.',
+    true
+    '2021-06-03 12:00:00'
+);
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`, `date`) VALUES(
+    2,
+    '5297.The_Picture_of_Dorian_Gray',
+    5,
+    'The Picture of Dorian Gray by Oscar Wilde is a captivating exploration of vanity and moral corruption, brilliantly illustrated through Dorians haunting portrait that reflects the consequences of his hedonistic lifestyle. Wildes exquisite prose and profound insights into the nature of beauty and ethics make this novel an enduring classic that continues to resonate with readers today.',
+    true
+    '2021-06-03 12:00:00'
+);
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`,`date`) VALUES(
+    5,
+    '5297.The_Picture_of_Dorian_Gray',
+    1,
+    'While The Picture of Dorian Gray offers an interesting premise, its self-indulgent exploration of superficiality and moral decay left me feeling exhausted and unsatisfied. Wildes verbose writing style often detracts from the narrative, making it a tedious read that struggles to engage on any meaningful level.',
+    false
+    '2021-06-02 12:00:00'
+);
+INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`, `date`) VALUES(
+    5,
+    '41865.Twilight',
+    3,
+    'Twilight by William Shakespeare is a well-known tragedy that captures the intensity of youthful love and the consequences of family feuds. While the poetic language and memorable characters are noteworthy, the story can feel overly dramatic and the resolution somewhat frustrating, making it a classic that’s both admired and critiqued.',
+    true,
+    '2021-06-01 12:00:00'
 );
 
 -- Following below are scripts for inserting books
