@@ -130,3 +130,28 @@ body {
 .logo-homepage:hover {
     filter: invert(1); /* Invert colors on hover */
 }
+
+.search-button {
+    padding-left: 10px;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background: none; /* Remove default background */
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default styling for Safari */
+    box-shadow: none; /* Remove default box shadow */
+    outline: none; /* Remove default outline */
+    margin: 0 auto; /* Center align the button */
+    transition: filter 0.5s ease;
+}
+
+.search-button-img {
+    width: 20px;
+    height: auto;
+    transition: filter 0.5s ease;
+}
+
+.search-button:hover {
+    filter: hue-rotate(90deg);
+}
