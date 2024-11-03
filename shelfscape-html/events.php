@@ -76,7 +76,7 @@ session_start();?>
                 <img src="assets/icons/escape_room.png" alt="Signature Event Image" class="signature-event-image">
                 <div class="signature-event-content">
                     <h3>Mystery-Book Escape Room</h3>
-                    <p>Sign up now for the Annual Escape Room!</p>
+                    <p>Sign up now for the Annual Escape Room Challenge!</p>
                 </div>
             </div>
             <p class="signature-event-description">

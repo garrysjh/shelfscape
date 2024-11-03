@@ -127,7 +127,7 @@ session_start();
         <div class="about-content">
             <img src="assets/icons/shelfscape_img.png" alt="We Are ShelfScape Image" class="we-are-image">
             <div class="text">
-                <h3>We Are ShelfScape</h3>
+                <h3>ShelfScape's Mission</h3>
                 <p>Shelfscape is on a mission to disrupt the conventional library system. We’re the first online digital library offering free e-books to everyone, anywhere. With a collection of over 10 million books, there’s something for everyone. Join us and explore ShelfScape today!</p>
             </div>
         </div>
@@ -138,13 +138,13 @@ session_start();
     <div class="carousel-wrapper">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/icons/location_1.png" alt="Library Scene 1">
+                <img src="assets/icons/location_2.png" alt="Library Scene 1">
             </div>
             <div class="carousel-item">
-                <img src="assets/icons/location_2.png" alt="Library Scene 2">
+                <img src="assets/icons/location_3.png" alt="Library Scene 2">
             </div>
             <div class="carousel-item">
-                <img src="assets/icons/location_3.png" alt="Library Scene 3">
+                <img src="assets/icons/location_1.png" alt="Library Scene 3">
             </div>
         </div>
         <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>

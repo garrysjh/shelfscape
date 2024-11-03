@@ -26,7 +26,7 @@ body {
 }
 
 .we-are h2 {
-    color: #003f5c;
+    color: black;
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
@@ -34,7 +34,7 @@ body {
 
 .intro-text {
     font-size: 1.2rem;
-    color: #58508d;
+    color: #333;
     margin-bottom: 2rem;
 }
 
@@ -75,7 +75,7 @@ main {
 .carousel-section-title {
     text-align: center;
     font-size: 2rem;
-    color: #003f5c;
+    color: black;
     margin-bottom: 1rem;
 }
 
@@ -116,7 +116,6 @@ main {
     padding: 10px;
     border-radius: 8px;
 }
-
 /* Carousel Navigation Buttons */
 .carousel-button {
     position: absolute;
@@ -129,6 +128,7 @@ main {
     cursor: pointer;
     font-size: 24px;
     z-index: 1;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover */
 }
 
 .carousel-button.prev {
@@ -139,7 +139,11 @@ main {
     right: 15px;
 }
 
-
+/* Hover Effect */
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Darken background on hover */
+    transform: translateY(-50%) scale(1.1); /* Slightly increase button size on hover */
+}
 
 /* Locate Us Section */
 .locate-us {
@@ -153,7 +157,7 @@ main {
 }
 
 .locate-us h2 {
-    color: #003f5c;
+    color: black;
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1rem;

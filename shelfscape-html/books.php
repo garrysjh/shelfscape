@@ -14,7 +14,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 // Pagination settings
 $limit = 9; // Number of books per page
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -64,7 +63,6 @@ $result = $stmt->get_result();
 
 $books = [];
 if ($result->num_rows > 0) {
-    // Fetch all books
     while($row = $result->fetch_assoc()) {
         $books[] = $row;
     }
@@ -79,10 +77,7 @@ $conn->close();
     <link rel="icon" type="image/x-icon" href="./assets/icons/shelfscape-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/books.css" />
   </head>
@@ -143,9 +138,19 @@ $conn->close();
     </header>
     <main>
       <div class="main-container">
-        <h1>All Books</h1>
-                <!-- Pagination Links -->
-                <div class="pagination">
+        <h1>
+          <?php 
+            if ($query) {
+                echo "Search Results for: " . htmlspecialchars($query);
+            } elseif ($category) {
+                echo htmlspecialchars($category) . " Books";
+            } else {
+                echo "All Books";
+            }
+          ?>
+        </h1>
+        <!-- Pagination Links -->
+        <div class="pagination">
             <?php if ($page > 1): ?>
                 <a href="?page=<?php echo $page - 1; ?>&query=<?php echo urlencode($query); ?>&category=<?php echo urlencode($category); ?>">Previous</a>
             <?php endif; ?>
@@ -237,5 +242,4 @@ $conn->close();
     </footer>
     </main>
   </body>
-  <script></script>
 </html>
