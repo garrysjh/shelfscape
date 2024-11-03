@@ -309,27 +309,7 @@ $conn->close();
         showSlide(currentIndex);
     </script>
 
-    <style>
-        /* Welcome Banner Styling */
-.welcome-banner {
-    background-color: #8b0000; /* Dark red background for contrast */
-    color: #ffffff; /* White text for readability */
-    padding: 20px;
-    text-align: center;
-    border-bottom: 4px solid #555; /* Optional border for a visual touch */
-}
-
-.welcome-banner h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.welcome-banner p {
-    font-size: 1.2rem;
-    font-weight: 300;
-}
-
-
+    
     </style>
 </body>
 </html>

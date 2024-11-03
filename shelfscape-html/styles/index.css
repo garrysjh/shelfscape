@@ -56,22 +56,23 @@ a {
         }
 
         /* Welcome Banner */
-        .welcome-banner {
-            background-color: #8b0000;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 4px solid #555;
-        }
+.welcome-banner {
+    background-color: #8b0000; /* Dark red background for contrast */
+    color: #ffffff; /* White text for readability */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid #555; /* Optional border for a visual touch */
+}
 
-        /* Carousel Styling */
-        .we-create {
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            margin-top: 2rem;
-            background-color: #fff;
-            text-align: center;
-        }
+/* Carousel Styling */
+.we-create {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 0.1rem; /* Reduced margin to minimize space */
+    background-color: #fff;
+    text-align: center;
+    color: #8b0000; /* Optional color for emphasis */
+}
 
         .carousel-wrapper {
             position: relative;
