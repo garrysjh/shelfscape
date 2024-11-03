@@ -77,22 +77,24 @@ session_start();
         <h2>Donate a Book</h2>
         <form action="donate_process.php" method="POST">
           <label for="title">Title:</label>
-          <input type="text" id="title" name="title" required><br>
+          <input type="text" id="title" name="title" required placeholder="Title of the book"><br>
 
           <label for="author">Author:</label>
-          <input type="text" id="author" name="author" required><br>
+          <input type="text" id="author" name="author" required placeholder="Author of the book"><br>
 
           <label for="description">Description:</label>
-          <textarea id="description" name="description" required></textarea><br>
+          <textarea id="description" name="description" required placeholder="Book description"></textarea><br>
 
-          <label for="language">Language:</label>
-          <input type="text" id="language" name="language" required><br>
+            <label for="language">Language:</label>
+            <select id="language" name="language" required>
+            <option value="English">English</option>
+            </select><br>
 
           <label for="isbn">ISBN:</label>
-          <input type="text" id="isbn" name="isbn" required><br>
+          <input type="text" id="isbn" name="isbn" required placeholder="International Standard Book Number"><br>
 
           <label for="genres">Genres:</label>
-          <input type="text" id="genres" name="genres" required><br>
+          <input type="text" id="genres" name="genres" required placeholder="Genres, separated by a comma"><br>
 
           <button type="submit">Donate</button>
         </form>

@@ -1,7 +1,7 @@
 .donate-container {
     margin-left: 10vw;
     margin-right: 10vw;
-    margin-top: 5vh;
+    margin-top: 20vh;
     margin-bottom: 20vh;
     padding: 20px;
     background-color: #f9f9f9;
@@ -20,7 +20,8 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="number"],
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 10px;
     margin-top: 10px;

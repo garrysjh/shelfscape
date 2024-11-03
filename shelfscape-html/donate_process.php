@@ -31,11 +31,12 @@ $genres = $_POST['genres'];
 $genres_array = explode(',', $genres);
 $genres_json = json_encode($genres_array);
 $genres = $genres_json;
+$coverImg = "https://images.isbndb.com/covers/28/52/".$isbn.".jpg";
 
 // Insert book into database
-$insert_sql = "INSERT INTO Books (title, author, description, language, isbn, genres) VALUES (?, ?, ?, ?, ?, ?)";
+$insert_sql = "INSERT INTO Books (title, author, description, language, isbn, genres, coverImg) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($insert_sql);
-$stmt->bind_param("ssssss", $title, $author, $description, $language, $isbn, $genres);
+$stmt->bind_param("sssssss", $title, $author, $description, $language, $isbn, $genres, $coverImg);
 
 if ($stmt->execute()) {
     // Redirect back to donate.php with success message
