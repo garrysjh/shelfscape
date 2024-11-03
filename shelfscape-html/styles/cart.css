@@ -1,3 +1,79 @@
+/* Cart Container Styling */
 .cart-container {
-    margin: 5rem;
+    width: 80%;
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Cart Table Styling */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-table th {
+    font-weight: bold;
+    color: #555;
+}
+
+.cart-table td img {
+    width: 70px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Cart Button Styling */
+.cart-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-button:hover {
+    background-color: #a30000;
+}
+
+.cart-form button {
+    width: 100%;
+}
+
+.cart-checkout-button {
+    width: auto;
+    padding: 10px 20px;
+    font-weight: bold;
+    margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Empty Cart Message */
+.cart-container p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
 }

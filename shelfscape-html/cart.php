@@ -97,7 +97,7 @@ $conn->close();
     <div class="cart-container">
     <h1>Your Cart</h1>
     <?php if ($result->num_rows > 0): ?>
-        <table>
+        <table class="cart-table">
             <thead>
                 <tr>
                     <th>Item</th>
@@ -109,25 +109,26 @@ $conn->close();
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($row['title']); ?></td>
-                        <td><img src="<?php echo htmlspecialchars($row['coverImg']); ?>" alt="Cover Image" width="50"></td>
+                        <td><img src="<?php echo htmlspecialchars($row['coverImg']); ?>" alt="Cover Image"></td>
                         <td>
-                            <form action="remove_from_cart.php" method="POST">
+                            <form action="remove_from_cart.php" method="POST" class="cart-form">
                                 <input type="hidden" name="bookId" value="<?php echo $row['bookId']; ?>">
                                 <input type="hidden" name="userId" value="<?php echo $_SESSION['user_id']; ?>">
-                                <button type="submit">Remove from Cart</button>
+                                <button type="submit" class="cart-button">Remove from Cart</button>
                             </form>
                         </td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
-        <form action="checkout.php" method="POST">
-            <button type="submit">Checkout</button>
+        <form action="checkout.php" method="POST" class="cart-form">
+            <button type="submit" class="cart-checkout-button">Checkout</button>
         </form>
     <?php else: ?>
         <p>Your cart is empty.</p>
     <?php endif; ?>
-    </div>
+</div>
+
      <!-- Footer -->
      <footer class="footer">
         <div class="footer-content">
