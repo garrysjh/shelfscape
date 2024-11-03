@@ -98,7 +98,7 @@ $conn->close();
             </div>
             <div class="search-bar">
                 <form action="books.php" method="GET">
-                    <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" />
+                    <input type="text" name="query" placeholder="ENTER SERIAL NO OR TITLE" required/>
                     <button type="submit" class="search-button">
                         <img class="search-button-img" src="assets/icons/search.png" alt="Search Icon" />
                     </button>
