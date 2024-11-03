@@ -25,6 +25,13 @@ INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
 'johndoe@example.com',
 '1234567890');
 
+INSERT INTO `User`(`username`, `password`, `email`, `phone`) VALUES(
+'jackmrbean',
+'password123',
+'jackmrbeans@example.com',
+'123124124');
+
+
 -- CartItems
 -- For reserving existing books
 DROP TABLE IF EXISTS `CartItems`;
@@ -40,9 +47,21 @@ DROP TABLE IF EXISTS `Friends`;
 CREATE TABLE IF NOT EXISTS `Friends`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `userId` INT NOT NULL, -- foreign key for id from users
-    `friendId` INT NOT NULL -- foreign key for id from users
+    `friendId` INT NOT NULL, -- foreign key for id from users
     `status` VARCHAR(50) NOT NULL DEFAULT 'PENDING'
-)
+);
+
+INSERT INTO `Friends`(`userId`, `friendId`, `status`) VALUES(
+    2,
+    1,
+    'PENDING'
+);
+
+INSERT INTO `Friends`(`userId`, `friendId`, `status`) VALUES(
+    3,
+    1,
+    'PENDING'
+);
 
 -- Posts
 
@@ -60,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `Reviews`(
 
 INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VALUES(
     1,
-    '10210.Jane_Eyres',
+    '10210.Jane_Eyre',
     5,
     'This book is amazing. It is a work of art. I read this and related very heavily to the main character. This was a beautiful experience. Would highly recommend this work of art to anyone seeking a very passionate read! ',
     true
@@ -68,7 +87,7 @@ INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VAL
 
 INSERT INTO `Reviews`(`userId`, `bookId`, `rating`, `review`, `recommended`) VALUES(
     2,
-    '10210.Jane_Eyres',
+    '10210.Jane_Eyre',
     5,
     'This book is a work of art. I really enjoyed the character Jane. Even though some of the charactersin this book got pretty annoying, I still thought this was a pretty beautiful experience. Would highly recommend this work of art to anyone seeking a very kind read! ',
     true
