@@ -8,7 +8,6 @@ body {
 
 /* Section Wrappers */
 .section-wrapper {
-    max-width: 1200px;
     margin: 2rem auto;
     padding: 1rem;
     border-radius: 8px;
@@ -38,14 +37,20 @@ body {
     margin-bottom: 2rem;
 }
 
+/* About Us Section Image Styling */
+/* About Us Section Image Styling */
 .we-are-image {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: 8px;
+
+    width:150px;
+    height:150px;    /* Caps height for consistency */
+    object-fit: cover;         /* Crops the image if needed to maintain width and height */
+    aspect-ratio: 4 / 3;       /* Defines a consistent aspect ratio */
+    border-radius: 8px;        /* Rounds the corners */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 1rem auto;
+    display: block;
+    margin: 1rem auto;         /* Centers the image */
 }
+
 
 .text h3 {
     color: #333;
@@ -60,6 +65,48 @@ body {
     font-size: 1.1rem;
     line-height: 1.6;
 }
+
+
+.about-us-section {
+    width: 80%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+}
+
+.about-us-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #8b0000;
+    margin-bottom: 2rem;
+}
+
+.about-us-section h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-us-section p,
+.about-us-section ul {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.about-us-section ul {
+    padding-left: 1.5rem;
+}
+
+.about-us-section li {
+    margin-bottom: 0.5rem;
+}
+
 /* Main Content Centering */
 main {
     width: 90%;

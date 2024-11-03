@@ -121,18 +121,74 @@ session_start();
         </nav>
     </header>
     <body>
-    <!-- About Us Section -->
-    <section class="we-are section-wrapper">
-        <h2>About Us</h2>
-        <p class="intro-text">Hello! ShelfScape was founded by Garry and Josiah, a pair of year 4 students from NTU EEE.</p>
-        <div class="about-content">
-            <img src="assets/icons/shelfscape_img.png" alt="We Are ShelfScape Image" class="we-are-image">
-            <div class="text">
-                <h3>ShelfScape's Mission</h3>
-                <p>Shelfscape is on a mission to disrupt the conventional library system. We’re the first online digital library offering free e-books to everyone, anywhere. With a collection of over 10 million books, there’s something for everyone. Join us and explore ShelfScape today!</p>
+    <section class="about-us-section">
+    <h2>About Us</h2>
+
+    <!-- Who We Are -->
+    <div class="who-we-are">
+        <h3>Who We Are</h3>
+        <div class="content">
+            <img src="assets/icons/josiah_garry.png" display="block" margin="0 auto" height="650px" width="940px" alt="Josiah and Garry" class="profile-img">
+            <p>Hello! We are Josiah and Garry, final-year students at Nanyang Technological University (NTU), pursuing our degrees in Electrical and Electronic Engineering (EEE). As passionate technologists and avid readers, we've combined our skills and interests to create ShelfScape.</p>
+        </div>
+    </div>
+
+    <!-- Our Story -->
+    <div class="our-story">
+        <h3>Our Story</h3>
+        <div class="content">
+            <img src="assets/icons/ntu_campus.png" display="block" margin="0 auto" height="650px" width="940px" alt="NTU Campus" class="story-img">
+            <p>Our journey began on the bustling campus of NTU. We met during a freshman engineering orientation and quickly bonded over a shared love for technology and literature. Between lectures and lab sessions, we'd often discuss the latest tech trends and our favorite books.</p>
+            <p>One evening, while studying in the campus library, we noticed that many students struggled to find the resources they needed. Textbooks were expensive, library copies were limited, and not everyone could afford e-books. This sparked an idea: What if we could make books accessible to everyone, anytime, anywhere?</p>
+        </div>
+    </div>
+
+    <!-- The Birth of ShelfScape -->
+    <div class="birth-of-shelfscape interactive-card">
+        <h3>The Birth of ShelfScape</h3>
+        <div class="content">
+            <p>Fueled by this vision, we embarked on a mission to disrupt the conventional library system. We wanted to leverage our engineering skills to create a platform that democratizes access to knowledge. After countless brainstorming sessions and late-night coding marathons, ShelfScape was born—the first online digital library offering free e-books to everyone.</p>
+            <img src="assets/icons/coding_sessions.png" display="block" margin="0 auto" height="650px" width="940px" alt="Late-night coding session" class="interactive-img">
+        </div>
+    </div>
+
+    <!-- Our Mission -->
+    <div class="our-mission">
+        <h3>Our Mission</h3>
+        <div class="content">
+            <div class="mission-item">
+                <br>
+                <p><strong>Accessibility:</strong> Provide unrestricted access to a vast collection of books across all genres.</p>
+            </div>
+            <div class="mission-item">
+                <br>
+                <p><strong>Community:</strong> Build a global community of readers and learners.</p>
+            </div>
+            <div class="mission-item">
+                <br>
+                <p><strong>Innovation:</strong> Continually enhance our platform using the latest technologies.</p>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Our Vision for the Future -->
+    <div class="our-vision">
+        <h3>Our Vision for the Future</h3>
+        <ul>
+            <li>Expand Our Library: Partner with more authors and publishers to enrich our collection.</li>
+            <li>Enhance User Experience: Integrate AI recommendations, personalized reading lists, and interactive community features.</li>
+            <li>Promote Education: Collaborate with educational institutions to support learning and literacy programs worldwide.</li>
+        </ul>
+    </div>
+
+    <div class="join-us">
+        <h3>Join Us on This Journey</h3>
+        <p>ShelfScape is more than just a library; it's a movement toward accessible education and shared knowledge. Whether you're a casual reader, a student, or someone with a thirst for knowledge, we invite you to explore what ShelfScape has to offer.</p>
+    </div>
+</section>
+
+
+
 
     <section class="we-create">
     <h2 class="carousel-section-title">Where it all started!</h2>
