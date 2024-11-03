@@ -109,8 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a href="books.php?category=Horror">Horror</a>
                     </div>
                 </div>
-                <a href="events.html">Events</a>
-                <a href="aboutus.html">About</a>
+                <a href="events.php">Events</a>
+                <a href="aboutus.php">About</a>
                 <a href="donate.php">Donate</a>
             </div>
             <div class="search-bar">

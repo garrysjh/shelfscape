@@ -6,10 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles/aboutus.css" />
+    <link rel="stylesheet" href="styles/events.css" />
 </head>
 <body>
-    <!-- Full-width Header -->
+    <!-- Header -->
     <header>
         <nav class="navbar">
             <div class="logo">
@@ -47,57 +47,50 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Events Section -->
     <main>
-        <section class="we-are">
-            <h2>About Us</h2>
-            <p>Hello! ShelfScape was founded by Garry and Josiah, year 4 students from NTU EEE.</p>
-            <div class="about-content">
-                <img src="assets/icons/shelfscape_digital_library_img.jpg" alt="We Are ShelfScape Image" class="we-are-image">
-                <div class="text">
-                    <h2>We Are ShelfScape</h2>
-                    <p>Shelfscape plans to disrupt the conventional library system in place today. The first online digital library, providing free of charge e-books to everyone, anywhere. We have a database of over 10,000,000+ books to choose from. Come and try ShelfScape today!</p>
+        <section class="signature-event">
+            <h2>Our Events</h2>
+            <div class="signature-event-banner">
+                <img src="assets/icons/escape_room.png" alt="Signature Event Image" class="signature-event-image">
+                <div class="signature-event-content">
+                    <h3>Mystery-Book Escape Room</h3>
+                    <p>Sign up now for the Annual Escape Room!</p>
                 </div>
             </div>
+            <p class="signature-event-description">
+                Join us for an unforgettable literary adventure! Solve puzzles and unlock secrets based on your favorite books.
+            </p>
+            <p class="signature-event-details">
+                For more details, view our Instagram at <a href="https://instagram.com" target="_blank">@shelfscape</a>.
+            </p>
         </section>
 
-        <!-- Full-width Carousel -->
-        <section class="we-create">
-            <h2>We Create</h2>
+        <!-- Carousel for Events in November -->
+        <section class="upcoming-events">
+            <h2>Events in NOVEMBER</h2>
             <div class="carousel-wrapper">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/icons/library_carousel_1.png" alt="Image 1 Description">
+                        <img src="assets/icons/reading_book.png" alt="Story Time">
+                        <p class="event-title">Story Time Session</p>
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/icons/library_carousel_2.png" alt="Image 2 Description">
+                        <img src="assets/icons/spelling_bee.png" alt="Spelling Bee">
+                        <p class="event-title">Spelling Bee</p>
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/icons/library_carousel_3.png" alt="Image 3 Description">
+                        <img src="assets/icons/AI_event.png" alt="AI Workshop">
+                        <p class="event-title">AI Workshop</p>
                     </div>
                 </div>
                 <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
                 <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
             </div>
         </section>
-
-        <!-- Locate Us Section -->
-        <section class="locate-us">
-            <h2>Locate Us</h2>
-            <p>School of Electrical and Electronic Engineering</p>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.72281751501!2d103.67816467586454!3d1.3426961986446004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0f75a53bec9d%3A0xd08547c621f6dca6!2sSchool%20of%20Electrical%20and%20Electronic%20Engineering%20(EEE)!5e0!3m2!1sen!2ssg!4v1730082262426!5m2!1sen!2ssg" 
-                width="600" 
-                height="450" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </section>
     </main>
 
-    <!-- Full-width Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -145,21 +138,13 @@
         </div>
     </footer>
 
-    <script>
+    <script>        
         let currentIndex = 0;
 
         function showSlide(index) {
             const slides = document.querySelectorAll('.carousel-item');
             const totalSlides = slides.length;
-
-            if (index >= totalSlides) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = totalSlides - 1;
-            } else {
-                currentIndex = index;
-            }
-
+            currentIndex = (index + totalSlides) % totalSlides;
             document.querySelector('.carousel-inner').style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
@@ -173,5 +158,80 @@
 
         showSlide(currentIndex);
     </script>
+
+    <style>
+        /* Signature Event Styling */
+        .signature-event {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .signature-event-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f3f3;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1.5rem auto;
+        }
+
+        .signature-event-image {
+            width: 60%;
+            height: auto;
+            border-radius: 8px;
+            margin-right: 2rem;
+        }
+
+        /* Carousel Styling */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            padding: 1rem;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            text-align: center;
+        }
+
+        .carousel-item img {
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1;
+        }
+
+        .carousel-button.prev {
+            left: 15px;
+        }
+
+        .carousel-button.next {
+            right: 15px;
+        }
+    </style>
 </body>
 </html>

@@ -34,7 +34,7 @@ session_start();
               <a href="books.php?category=Horror">Horror</a>
             </div>
           </div>
-          <a href="events.html">Events</a>
+          <a href="events.php">Events</a>
           <a href="aboutus.php">About</a>
           <a href="donate.php">Donate</a>
         </div>
