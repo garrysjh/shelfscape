@@ -160,7 +160,7 @@ $conn->close();
     <div class="featured-book">
         <h2>Book of the Month</h2>
         <br>
-        <a href="book.php?bookId=<?php echo $bookDetails['bookId']; ?>">
+        <a href="book.php?id=<?php echo $bookDetails['bookId']; ?>">
             <img src="<?php echo $bookDetails['coverImg']; ?>" alt="<?php echo $bookDetails['title']; ?> Cover Image" class="book-cover">
         </a>
         <h3><a href="book.php?bookId=<?php echo $bookDetails['bookId']; ?>"><?php echo $bookDetails['title']; ?></a></h3>
