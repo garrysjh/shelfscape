@@ -136,24 +136,22 @@ $conn->close();
 
 <!-- Full-width Carousel -->
 <section class="we-create">
-    <br>
-    <div class="carousel-wrapper">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/icons/banner_1.png" alt="Image 1 Description">
+        <div class="carousel-wrapper">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/icons/banner_1.png" alt="Image 1 Description">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/icons/banner_2.png" alt="Image 2 Description">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/icons/banner_3.png" alt="Image 3 Description">
+                </div>
             </div>
-            <div class="carousel-item">
-                <img src="assets/icons/banner_2.png" alt="Image 2 Description">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/icons/banner_3.png" alt="Image 3 Description">
-            </div>
+            <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
         </div>
-        <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
-        <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
-    </div>
-</section>
-
+    </section>
 
     <section class="book-review-container">
     <!-- Book Details -->
@@ -283,31 +281,30 @@ $conn->close();
         </div>
     </footer>
 
-    <script>
+     <!-- JavaScript for Auto-slide and Hover Effects -->
+     <script>
         let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
 
+        // Function to show a specific slide
         function showSlide(index) {
-            const slides = document.querySelectorAll('.carousel-item');
-            const totalSlides = slides.length;
-
-            if (index >= totalSlides) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = totalSlides - 1;
-            } else {
-                currentIndex = index;
-            }
-
+            currentIndex = (index + totalSlides) % totalSlides;
             document.querySelector('.carousel-inner').style.transform = `translateX(-${currentIndex * 100}%)`;
         }
 
-        function nextSlide() {
-            showSlide(currentIndex + 1);
-        }
+        // Next and Previous slide functions
+        function nextSlide() { showSlide(currentIndex + 1); }
+        function prevSlide() { showSlide(currentIndex - 1); }
 
-        function prevSlide() {
-            showSlide(currentIndex - 1);
-        }
+        // Auto-slide functionality
+        let autoSlideInterval = setInterval(nextSlide, 3000);
+
+        // Pause auto-slide on hover
+        document.querySelector('.carousel-wrapper').addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        document.querySelector('.carousel-wrapper').addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        });
 
         showSlide(currentIndex);
     </script>

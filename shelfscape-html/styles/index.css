@@ -47,51 +47,72 @@ a {
 
 
 
+        /* General Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Full-width Carousel */
-.we-create {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-top: 2rem;
-    background-color: #fff;
-    text-align: center;
-    color: #8b0000; /* Optional color for emphasis */
-}
+        /* Welcome Banner */
+        .welcome-banner {
+            background-color: #8b0000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #555;
+        }
 
-.carousel-wrapper {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-}
+        /* Carousel Styling */
+        .we-create {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-top: 2rem;
+            background-color: #fff;
+            text-align: center;
+        }
 
-.carousel-inner {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
 
-.carousel-item {
-    min-width: 100vw;
-}
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
 
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 24px;
-}
+        .carousel-item {
+            min-width: 100vw;
+        }
 
-.carousel-button.prev {
-    left: 10px;
-}
+        .carousel-item img {
+            width: auto;
+            height: auto;
+        }
 
-.carousel-button.next {
-    right: 10px;
-}
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-button.prev { left: 10px; }
+        .carousel-button.next { right: 10px; }
+
+        /* Hover effect for carousel buttons */
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
 
 /* Book of the Month */
 .book-review-container {
