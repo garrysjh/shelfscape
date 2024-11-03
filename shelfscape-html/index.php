@@ -67,6 +67,7 @@ $conn->close();
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/index.css" />
   </head>
   
@@ -76,7 +77,7 @@ $conn->close();
         <nav class="navbar">
             <div class="logo">
                 <a href="index.php">
-                    <img src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
+                    <img class="logo-homepage" src="assets/icons/shelfscape-logo.png" alt="Shelfscape Logo" />
                 </a>
             </div>
             <div class="nav-links">
@@ -105,7 +106,7 @@ $conn->close();
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true): ?>
                     <div class="dropdown">
                         <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="User Icon" class="usericon"/>
-                        <div class="dropdown-content">
+                        <div class="dropdown-content login-dropdown-content">
                             <a href="profile.php">Profile</a>
                             <a href="settings.php">Settings</a>
                             <a href="logout.php">Logout</a>
