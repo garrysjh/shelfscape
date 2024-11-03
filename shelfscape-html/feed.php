@@ -23,28 +23,31 @@ if ($conn->connect_error) {
 
 $user_id = $_SESSION['user_id'];
 
-// Retrieve confirmed friends
+// Determine the current page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$posts_per_page = 5;
+$offset = ($page - 1) * $posts_per_page;
+
+// Retrieve confirmed friends' posts with pagination
 $posts_sql = "
-SELECT u.username, u.profilePicture, r.userId, r.review, b.title, b.coverImg, r.rating, r.date, r.recommended from reviews r LEFT JOIN books b using(bookId)  
-LEFT JOIN user u on r.userId = u.id
-where r.userId in
-(SELECT 
-    u.id
-FROM 
-    Friends f
-JOIN 
-    user u 
-    ON u.id = CASE 
-                 WHEN f.userId = ? THEN f.friendId 
-                 ELSE f.userId 
-               END
-WHERE 
-    (f.userId = ? OR f.friendId = ?)
-    AND f.status = 'CONFIRMED')
-ORDER BY 
-r.date DESC;";
+SELECT u.username, u.profilePicture, r.userId, r.review, b.bookId, b.title, b.coverImg, r.rating, r.date, r.recommended 
+FROM reviews r 
+LEFT JOIN books b USING(bookId)  
+LEFT JOIN user u ON r.userId = u.id
+WHERE r.userId IN (
+    SELECT u.id
+    FROM Friends f
+    JOIN user u ON u.id = CASE 
+                            WHEN f.userId = ? THEN f.friendId 
+                            ELSE f.userId 
+                          END
+    WHERE (f.userId = ? OR f.friendId = ?)
+    AND f.status = 'CONFIRMED'
+)
+ORDER BY r.date DESC
+LIMIT ? OFFSET ?";
 $stmt = $conn->prepare($posts_sql);
-$stmt->bind_param("iii", $user_id, $user_id, $user_id);
+$stmt->bind_param("iiiii", $user_id, $user_id, $user_id, $posts_per_page, $offset);
 $stmt->execute();
 $confirmed_result = $stmt->get_result();
 $posts = [];
@@ -58,12 +61,37 @@ while ($row = $confirmed_result->fetch_assoc()) {
         'coverImg' => $row['coverImg'],
         'rating' => $row['rating'],
         'date' => $row['date'],
-        'recommended' => $row['recommended']
+        'recommended' => $row['recommended'],
+        'bookId' => $row['bookId']
     ];
 }
 $stmt->close();
 
+// Get the total number of posts
+$count_sql = "
+SELECT COUNT(*) AS total 
+FROM reviews r 
+WHERE r.userId IN (
+    SELECT u.id
+    FROM Friends f
+    JOIN user u ON u.id = CASE 
+                            WHEN f.userId = ? THEN f.friendId 
+                            ELSE f.userId 
+                          END
+    WHERE (f.userId = ? OR f.friendId = ?)
+    AND f.status = 'CONFIRMED'
+)";
+$stmt = $conn->prepare($count_sql);
+$stmt->bind_param("iii", $user_id, $user_id, $user_id);
+$stmt->execute();
+$count_result = $stmt->get_result();
+$total_posts = $count_result->fetch_assoc()['total'];
+$stmt->close();
+
 $conn->close();
+
+// Calculate total pages
+$total_pages = ceil($total_posts / $posts_per_page);
 ?>
 
 <!DOCTYPE html>
@@ -131,20 +159,28 @@ $conn->close();
         </nav>
     </header>
     <div class="feed-container">
-    <h1>Friend Activity</h1>
+    <h1 style="margin-bottom: 2vh;">Friend Activity</h1>
         <?php foreach ($posts as $post): ?>
             <div class="post">
                 <div class="post-header">
+                    <a href="profile.php?id=<?php echo htmlspecialchars($post['userId']); ?>">
                     <img src="<?php echo htmlspecialchars($post['profilePicture']); ?>" alt="Profile Picture" class="profile-pic">
+        </a>
                     <div class="user-info">
+                        <a href="profile.php?id=<?php echo htmlspecialchars($post['userId']); ?>">
                         <p class="username"><?php echo htmlspecialchars($post['username']); ?></p>
                         <p class="date"><?php echo htmlspecialchars($post['date']); ?></p>
+        </a>
                     </div>
                 </div>
                 <div class="post-content">
+                    <a href="book.php?id=<?php echo htmlspecialchars($post['bookId']); ?>">
                     <img src="<?php echo htmlspecialchars($post['coverImg']); ?>" alt="Book Cover" class="book-cover">
+        </a>
                     <div class="review-info">
+                    <a href="book.php?id=<?php echo htmlspecialchars($post['bookId']); ?>">
                         <h3 class="book-title"><?php echo htmlspecialchars($post['title']); ?></h3>
+        </a>
                         <p class="review"><?php echo htmlspecialchars($post['review']); ?></p>
                         <p class="rating">Rating: <?php echo htmlspecialchars($post['rating']); ?>/5</p>
                         <p class="recommended"><?php echo $post['recommended'] ? 'Recommended' : 'Not Recommended'; ?></p>
@@ -152,6 +188,18 @@ $conn->close();
                 </div>
             </div>
         <?php endforeach; ?>
+    </div>
+    <!-- Pagination -->
+    <div class="pagination">
+        <?php if ($page > 1): ?>
+            <a href="feed.php?page=<?php echo $page - 1; ?>">&laquo; Previous</a>
+        <?php endif; ?>
+        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            <a href="feed.php?page=<?php echo $i; ?>" class="<?php echo $i == $page ? 'active' : ''; ?>"><?php echo $i; ?></a>
+        <?php endfor; ?>
+        <?php if ($page < $total_pages): ?>
+            <a href="feed.php?page=<?php echo $page + 1; ?>">Next &raquo;</a>
+        <?php endif; ?>
     </div>
     <!-- Full-width Footer -->
     <footer class="footer">
