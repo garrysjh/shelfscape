@@ -79,8 +79,14 @@ body {
     margin: 0 0 10px 0;
 }
 
-.recommended {
-    color: #4CAF50;
+/* Color styling for Recommended and Not Recommended text */
+.recommended-text {
+    color: #28a745; /* Green color for Recommended */
+    font-weight: bold;
+}
+
+.not-recommended-text {
+    color: #dc3545; /* Red color for Not Recommended */
     font-weight: bold;
 }
 

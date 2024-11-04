@@ -162,35 +162,36 @@ $total_pages = ceil($total_posts / $posts_per_page);
     </header>
     <div class="feed-container">
     <h1 style="margin-bottom: 2vh;">Friend Activity</h1>
-        <?php foreach ($posts as $post): ?>
-            <div class="post">
-                <div class="post-header">
-                    <a href="profile.php?id=<?php echo htmlspecialchars($post['userId']); ?>">
-                    <img src="<?php echo htmlspecialchars($post['profilePicture']); ?>" alt="Profile Picture" class="profile-pic">
-        </a>
-                    <div class="user-info">
-                        <a href="profile.php?id=<?php echo htmlspecialchars($post['userId']); ?>">
-                        <p class="username"><?php echo htmlspecialchars($post['username']); ?></p>
-                        <p class="date"><?php echo htmlspecialchars($post['date']); ?></p>
-        </a>
-                    </div>
-                </div>
-                <div class="post-content">
-                    <a href="book.php?id=<?php echo htmlspecialchars($post['bookId']); ?>">
-                    <img src="<?php echo htmlspecialchars($post['coverImg']); ?>" alt="Book Cover" class="book-cover">
-        </a>
-                    <div class="review-info">
-                    <a href="book.php?id=<?php echo htmlspecialchars($post['bookId']); ?>">
-                        <h3 class="book-title"><?php echo htmlspecialchars($post['title']); ?></h3>
-        </a>
-                        <p class="review"><?php echo htmlspecialchars($post['review']); ?></p>
-                        <p class="rating">Rating: <?php echo htmlspecialchars($post['rating']); ?>/5</p>
-                        <p class="recommended"><?php echo $post['recommended'] ? 'Recommended' : 'Not Recommended'; ?></p>
-                    </div>
-                </div>
+    <?php foreach ($posts as $post): ?>
+    <div class="post <?php echo $post['recommended'] ? 'recommended' : 'not-recommended'; ?>">
+        <div class="post-header">
+            <a href="profile.php?id=<?php echo htmlspecialchars($post['userId']); ?>">
+                <img src="<?php echo htmlspecialchars($post['profilePicture']); ?>" alt="Profile Picture" class="profile-pic">
+            </a>
+            <div class="user-info">
+                <a href="profile.php?id=<?php echo htmlspecialchars($post['userId']); ?>">
+                    <p class="username"><?php echo htmlspecialchars($post['username']); ?></p>
+                    <p class="date"><?php echo htmlspecialchars($post['date']); ?></p>
+                </a>
             </div>
-        <?php endforeach; ?>
+        </div>
+        <div class="post-content">
+            <a href="book.php?id=<?php echo htmlspecialchars($post['bookId']); ?>">
+                <img src="<?php echo htmlspecialchars($post['coverImg']); ?>" alt="Book Cover" class="book-cover">
+            </a>
+            <div class="review-info">
+                <a href="book.php?id=<?php echo htmlspecialchars($post['bookId']); ?>">
+                    <h3 class="book-title"><?php echo htmlspecialchars($post['title']); ?></h3>
+                </a>
+                <p class="review"><?php echo htmlspecialchars($post['review']); ?></p>
+                <p class="rating">Rating: <?php echo htmlspecialchars($post['rating']); ?>/5</p>
+                <p class="recommendation <?php echo $post['recommended'] ? 'recommended-text' : 'not-recommended-text'; ?>">
+    <?php echo $post['recommended'] ? 'Recommended' : 'Not Recommended'; ?>
+</p>
+            </div>
+        </div>
     </div>
+<?php endforeach; ?>
     <!-- Pagination -->
     <div class="pagination">
         <?php if ($page > 1): ?>
